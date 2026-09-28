@@ -1,318 +1,54 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fresh Tokari</title>
+<title>LAW FRESH TOKARI</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#f4f7f3;
-    color:#222;
-}
-
-header{
-    background:#198754;
-    color:white;
-    padding:16px 5%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.logo{
-    font-size:26px;
-    font-weight:bold;
-}
-
-nav button{
-    background:white;
-    color:#198754;
-    border:0;
-    padding:9px 14px;
-    margin-left:5px;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.container{
-    width:92%;
-    max-width:1200px;
-    margin:25px auto;
-}
-
-.hero{
-    background:linear-gradient(135deg,#198754,#38b96f);
-    color:white;
-    padding:45px 25px;
-    border-radius:18px;
-    margin-bottom:25px;
-}
-
-.hero h1{
-    font-size:38px;
-    margin-bottom:10px;
-}
-
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-    gap:18px;
-}
-
-.card{
-    background:white;
-    border-radius:15px;
-    padding:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
-}
-
-.product-img{
-    width:100%;
-    height:150px;
-    object-fit:cover;
-    border-radius:12px;
-    background:#eee;
-}
-
-.card h3{
-    margin:12px 0 6px;
-}
-
-.price{
-    color:#198754;
-    font-size:21px;
-    font-weight:bold;
-}
-
-button{
-    border:0;
-    cursor:pointer;
-}
-
-.primary{
-    background:#198754;
-    color:white;
-    padding:10px 15px;
-    border-radius:8px;
-    margin-top:10px;
-}
-
-.danger{
-    background:#dc3545;
-    color:white;
-    padding:9px 12px;
-    border-radius:7px;
-}
-
-.warning{
-    background:#ffc107;
-    color:#111;
-    padding:9px 12px;
-    border-radius:7px;
-}
-
-.info{
-    background:#0d6efd;
-    color:white;
-    padding:9px 12px;
-    border-radius:7px;
-}
-
-input,select,textarea{
-    width:100%;
-    padding:11px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    margin:7px 0;
-}
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.65);
-    z-index:500;
-    overflow:auto;
-    padding:20px;
-}
-
-.modal-box{
-    background:white;
-    max-width:700px;
-    margin:40px auto;
-    padding:25px;
-    border-radius:15px;
-}
-
-.close{
-    float:right;
-    background:#dc3545;
-    color:white;
-    padding:6px 10px;
-    border-radius:6px;
-}
-
-.cart{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    margin-top:25px;
-}
-
-.cart-item{
-    display:flex;
-    justify-content:space-between;
-    padding:10px 0;
-    border-bottom:1px solid #ddd;
-}
-
-.dashboard{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:15px;
-    margin-bottom:25px;
-}
-
-.stat{
-    background:white;
-    padding:20px;
-    border-radius:14px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-.stat h2{
-    color:#198754;
-    margin-top:8px;
-}
-
-.order{
-    background:white;
-    border-radius:14px;
-    padding:18px;
-    margin:15px 0;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
-}
-
-.status{
-    display:inline-block;
-    padding:6px 10px;
-    border-radius:20px;
-    background:#e9ecef;
-    margin:5px 0;
-    font-size:13px;
-    font-weight:bold;
-}
-
-.status.delivered{
-    background:#d1e7dd;
-    color:#0f5132;
-}
-
-.status.cancelled{
-    background:#f8d7da;
-    color:#842029;
-}
-
-.status.delivery{
-    background:#cfe2ff;
-    color:#084298;
-}
-
-.price-control{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    margin-top:10px;
-}
-
-.price-control button{
-    padding:7px 11px;
-    border-radius:6px;
-    background:#198754;
-    color:white;
-}
-
-.price-control button.minus{
-    background:#dc3545;
-}
-
-.price-control span{
-    min-width:70px;
-    text-align:center;
-    font-weight:bold;
-}
-
-.photo{
-    max-width:220px;
-    max-height:220px;
-    object-fit:cover;
-    border-radius:10px;
-    margin-top:10px;
-}
-
-.hidden{
-    display:none!important;
-}
-
-.track-result{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    margin-top:15px;
-}
-
-.timeline{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin:15px 0;
-}
-
-.timeline div{
-    padding:8px 12px;
-    background:#eee;
-    border-radius:20px;
-}
-
-.timeline .active{
-    background:#198754;
-    color:white;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    margin-top:40px;
-    background:#183b29;
-    color:white;
-}
-
-@media(max-width:600px){
-    .hero h1{
-        font-size:28px;
-    }
-
-    header{
-        flex-direction:column;
-        gap:10px;
-    }
-
-    nav button{
-        margin:2px;
-    }
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f3f7f2;color:#222}
+header{background:#168447;color:#fff;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{font-size:24px;font-weight:bold}
+nav button{border:0;border-radius:8px;padding:9px 12px;margin:3px;cursor:pointer;font-weight:bold}
+.container{width:92%;max-width:1200px;margin:25px auto}
+.hero{background:linear-gradient(135deg,#168447,#42bd72);color:white;padding:42px 25px;border-radius:18px;margin-bottom:25px}
+.hero h1{font-size:38px;margin-bottom:8px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+.card,.order,.stat{background:#fff;border-radius:15px;padding:16px;box-shadow:0 4px 15px #00000012}
+.product-img{width:100%;height:150px;object-fit:cover;border-radius:12px;background:#eee}
+.card h3{margin:10px 0 5px}
+.price{font-size:21px;color:#168447;font-weight:bold}
+button{cursor:pointer;border:0}
+.primary{background:#168447;color:#fff;padding:10px 15px;border-radius:8px;margin:5px 2px}
+.info{background:#0d6efd;color:#fff;padding:9px 12px;border-radius:7px;margin:3px}
+.warning{background:#ffc107;color:#111;padding:9px 12px;border-radius:7px;margin:3px}
+.danger{background:#dc3545;color:#fff;padding:9px 12px;border-radius:7px;margin:3px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:7px 0}
+.cart{background:#fff;padding:20px;border-radius:15px;margin-top:25px}
+.cart-item{display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:10px 0}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:500;overflow:auto;padding:20px}
+.modal-box{background:#fff;max-width:700px;margin:35px auto;padding:25px;border-radius:15px}
+.close{float:right;background:#dc3545;color:#fff;padding:6px 10px;border-radius:6px}
+.hidden{display:none!important}
+.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px;margin:20px 0}
+.stat h2{color:#168447;margin-top:8px}
+.status{display:inline-block;padding:6px 10px;border-radius:20px;background:#eee;margin:6px 0;font-size:13px;font-weight:bold}
+.status.delivered{background:#d1e7dd;color:#0f5132}
+.status.delivery{background:#cfe2ff;color:#084298}
+.status.cancelled{background:#f8d7da;color:#842029}
+.photo{max-width:220px;max-height:220px;border-radius:10px;margin:10px 0;display:block}
+.price-control{display:flex;gap:7px;align-items:center}
+.price-control button{padding:8px 12px;border-radius:7px;background:#168447;color:white}
+.price-control .minus{background:#dc3545}
+footer{background:#173d2a;color:#fff;text-align:center;padding:30px;margin-top:40px}
+.timeline{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}
+.timeline div{padding:8px 11px;background:#eee;border-radius:20px}
+.timeline .active{background:#168447;color:#fff}
+.rider-box{border:1px solid #ddd;border-radius:10px;padding:12px;margin:8px 0}
+@media(max-width:650px){
+ header{flex-direction:column;gap:10px}
+ .hero h1{font-size:29px}
 }
 </style>
 </head>
@@ -320,1200 +56,636 @@ footer{
 <body>
 
 <header>
-    <div class="logo">🥬 FRESH TOKARI</div>
-
-    <nav>
-        <button onclick="showHome()">Home</button>
-        <button onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
-        <button onclick="openTrack()">Track Order</button>
-        <button onclick="openLogin()">Admin / Rider</button>
-    </nav>
+<div class="logo">🥬 LAW FRESH TOKARI</div>
+<nav>
+<button onclick="showHome()">Home</button>
+<button onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+<button onclick="openTrack()">🔎 Track</button>
+<button onclick="openLogin()">🔐 Admin / Rider</button>
+</nav>
 </header>
 
 <div class="container">
 
 <section id="home">
 
-    <div class="hero">
-        <h1>Fresh Vegetables at Your Door 🥦</h1>
-        <p>Fresh Tokari — fresh sabzi, fast delivery.</p>
-    </div>
+<div class="hero">
+<h1>LAW FRESH TOKARI 🥦</h1>
+<p>Fresh Sabzi • Fast Delivery • Direct To Your Door</p>
+</div>
 
-    <h2>Fresh Vegetables</h2>
-    <br>
+<h2>Fresh Vegetables</h2><br>
+<div class="products" id="productList"></div>
 
-    <div class="products" id="productList"></div>
-
-    <div class="cart">
-        <h2>🛒 Your Cart</h2>
-        <div id="cartItems"></div>
-        <h3 id="cartTotal">Total: ₹0</h3>
-        <button class="primary" onclick="checkout()">Place Order</button>
-    </div>
+<div class="cart">
+<h2>🛒 Your Cart</h2>
+<div id="cartItems"></div>
+<h3 id="cartTotal">Total: ₹0</h3>
+<button class="primary" onclick="checkout()">Place Order</button>
+</div>
 
 </section>
 
 <section id="adminPanel" class="hidden">
 
-    <h1>🛠 Admin Portal</h1>
-    <br>
+<h1>🛠 LAW FRESH TOKARI — ADMIN PORTAL</h1>
 
-    <div class="dashboard">
-        <div class="stat">
-            <p>Total Orders</p>
-            <h2 id="totalOrders">0</h2>
-        </div>
+<div class="dashboard">
+<div class="stat">Total Orders<h2 id="totalOrders">0</h2></div>
+<div class="stat">New Orders<h2 id="newOrders">0</h2></div>
+<div class="stat">Delivery<h2 id="deliveryOrders">0</h2></div>
+<div class="stat">Delivered<h2 id="deliveredOrders">0</h2></div>
+</div>
 
-        <div class="stat">
-            <p>New Orders</p>
-            <h2 id="newOrders">0</h2>
-        </div>
+<h2>💰 Price Management</h2><br>
+<div id="adminProducts"></div>
 
-        <div class="stat">
-            <p>Out for Delivery</p>
-            <h2 id="deliveryOrders">0</h2>
-        </div>
+<br>
+<h2>🚴 Rider Management</h2>
+<button class="primary" onclick="addRider()">+ Add Rider</button>
+<div id="riderManagement"></div>
 
-        <div class="stat">
-            <p>Delivered</p>
-            <h2 id="deliveredOrders">0</h2>
-        </div>
-    </div>
-
-    <h2>💰 Price Management</h2>
-    <br>
-    <div id="adminProducts"></div>
-
-    <br>
-    <h2>📦 All Orders</h2>
-    <div id="adminOrders"></div>
+<br>
+<h2>📦 All Orders</h2>
+<div id="adminOrders"></div>
 
 </section>
 
 <section id="riderPanel" class="hidden">
-
-    <h1>🚴 Rider Portal</h1>
-    <p>Assigned orders</p>
-    <br>
-
-    <div id="riderOrders"></div>
-
+<h1>🚴 Rider Portal</h1>
+<p>Assigned orders</p><br>
+<div id="riderOrders"></div>
 </section>
 
 </div>
 
 <footer>
-    © 2026 Fresh Tokari | Fresh Vegetable Delivery
+© 2026 LAW FRESH TOKARI | Fresh Vegetable Delivery
 </footer>
 
-
-<!-- LOGIN MODAL -->
-
+<!-- LOGIN -->
 <div class="modal" id="loginModal">
 <div class="modal-box">
-
 <button class="close" onclick="closeModal('loginModal')">X</button>
-
 <h2>Login</h2>
-
 <select id="loginType">
-    <option value="admin">Admin</option>
-    <option value="rider">Rider</option>
+<option value="admin">Admin</option>
+<option value="rider">Rider</option>
 </select>
-
 <input id="loginUser" placeholder="Username">
 <input id="loginPass" type="password" placeholder="Password">
-
 <button class="primary" onclick="login()">Login</button>
-
-<p id="loginError" style="color:red;margin-top:10px;"></p>
-
+<p id="loginError" style="color:red"></p>
 </div>
 </div>
 
-
-<!-- CHECKOUT MODAL -->
-
+<!-- CHECKOUT -->
 <div class="modal" id="checkoutModal">
 <div class="modal-box">
-
 <button class="close" onclick="closeModal('checkoutModal')">X</button>
-
 <h2>Place Your Order</h2>
-
 <input id="customerName" placeholder="Your Name">
 <input id="customerPhone" placeholder="Mobile Number">
 <textarea id="customerAddress" placeholder="Delivery Address"></textarea>
-
 <select id="paymentMode">
-    <option value="COD">Cash on Delivery</option>
-    <option value="Online">Online Payment</option>
+<option>Cash on Delivery</option>
+<option>Online Payment</option>
 </select>
-
 <button class="primary" onclick="placeOrder()">Confirm Order</button>
-
 </div>
 </div>
 
-
-<!-- CART MODAL -->
-
+<!-- CART -->
 <div class="modal" id="cartModal">
 <div class="modal-box">
-
 <button class="close" onclick="closeModal('cartModal')">X</button>
-
 <h2>🛒 Cart</h2>
-
 <div id="modalCart"></div>
-
 <h3 id="modalTotal"></h3>
-
 <button class="primary" onclick="checkout()">Checkout</button>
-
 </div>
 </div>
 
-
-<!-- TRACK MODAL -->
-
+<!-- TRACK -->
 <div class="modal" id="trackModal">
 <div class="modal-box">
-
 <button class="close" onclick="closeModal('trackModal')">X</button>
-
-<h2>🔎 Track Your Order</h2>
-
+<h2>🔎 Track Order</h2>
 <input id="trackId" placeholder="Enter Order ID">
-
 <button class="primary" onclick="trackOrder()">Track</button>
-
 <div id="trackResult"></div>
-
 </div>
 </div>
-
 
 <script>
 
-let products = JSON.parse(localStorage.getItem("freshProducts")) || [
-
-    {
-        id:1,
-        name:"Tomato",
-        price:60,
-        unit:"kg",
-        image:"https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=600&q=80"
-    },
-
-    {
-        id:2,
-        name:"Potato",
-        price:40,
-        unit:"kg",
-        image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80"
-    },
-
-    {
-        id:3,
-        name:"Onion",
-        price:50,
-        unit:"kg",
-        image:"https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=600&q=80"
-    },
-
-    {
-        id:4,
-        name:"Cabbage",
-        price:45,
-        unit:"kg",
-        image:"https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=600&q=80"
-    },
-
-    {
-        id:5,
-        name:"Cauliflower",
-        price:70,
-        unit:"kg",
-        image:"https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=600&q=80"
-    },
-
-    {
-        id:6,
-        name:"Carrot",
-        price:55,
-        unit:"kg",
-        image:"https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=600&q=80"
-    }
+let products=JSON.parse(localStorage.getItem("lawProducts"))||[
+{id:1,name:"Tomato",price:60,unit:"kg",image:"https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=600&q=80"},
+{id:2,name:"Potato",price:40,unit:"kg",image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80"},
+{id:3,name:"Onion",price:50,unit:"kg",image:"https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=600&q=80"},
+{id:4,name:"Cabbage",price:45,unit:"kg",image:"https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=600&q=80"},
+{id:5,name:"Cauliflower",price:70,unit:"kg",image:"https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=600&q=80"},
+{id:6,name:"Carrot",price:55,unit:"kg",image:"https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=600&q=80"}
 ];
 
-let cart = JSON.parse(localStorage.getItem("freshCart")) || [];
+let riders=JSON.parse(localStorage.getItem("lawRiders"))||[
+{id:1,name:"Rider 1",username:"rider1",password:"1234",phone:""}
+];
 
-let orders = JSON.parse(localStorage.getItem("freshOrders")) || [];
+let orders=JSON.parse(localStorage.getItem("lawOrders"))||[];
+let cart=JSON.parse(localStorage.getItem("lawCart"))||[];
+let currentRider=null;
 
-let currentUser = null;
-
-
-/* SAVE */
-
-function saveProducts(){
-    localStorage.setItem("freshProducts",JSON.stringify(products));
+function save(){
+ localStorage.setItem("lawProducts",JSON.stringify(products));
+ localStorage.setItem("lawRiders",JSON.stringify(riders));
+ localStorage.setItem("lawOrders",JSON.stringify(orders));
+ localStorage.setItem("lawCart",JSON.stringify(cart));
 }
-
-function saveCart(){
-    localStorage.setItem("freshCart",JSON.stringify(cart));
-}
-
-function saveOrders(){
-    localStorage.setItem("freshOrders",JSON.stringify(orders));
-}
-
-
-/* HOME */
 
 function showHome(){
-
-    document.getElementById("home").classList.remove("hidden");
-    document.getElementById("adminPanel").classList.add("hidden");
-    document.getElementById("riderPanel").classList.add("hidden");
-
-    renderProducts();
-    renderCart();
-
+ document.getElementById("home").classList.remove("hidden");
+ document.getElementById("adminPanel").classList.add("hidden");
+ document.getElementById("riderPanel").classList.add("hidden");
+ renderProducts();
+ renderCart();
 }
-
-
-/* PRODUCTS */
 
 function renderProducts(){
-
-    let box=document.getElementById("productList");
-
-    box.innerHTML="";
-
-    products.forEach(p=>{
-
-        box.innerHTML+=`
-
-        <div class="card">
-
-            <img class="product-img" src="${p.image}">
-
-            <h3>${p.name}</h3>
-
-            <p class="price">₹${p.price}/${p.unit}</p>
-
-            <button class="primary"
-                onclick="addToCart(${p.id})">
-                Add to Cart
-            </button>
-
-        </div>
-
-        `;
-
-    });
-
+ let box=document.getElementById("productList");
+ box.innerHTML="";
+ products.forEach(p=>{
+ box.innerHTML+=`
+ <div class="card">
+ <img class="product-img" src="${p.image}">
+ <h3>${p.name}</h3>
+ <p class="price">₹${p.price}/${p.unit}</p>
+ <button class="primary" onclick="addCart(${p.id})">Add to Cart</button>
+ </div>`;
+ });
 }
 
-
-/* CART */
-
-function addToCart(id){
-
-    let product=products.find(p=>p.id===id);
-
-    let item=cart.find(x=>x.id===id);
-
-    if(item){
-
-        item.qty++;
-
-    }else{
-
-        cart.push({
-            id:id,
-            name:product.name,
-            price:product.price,
-            qty:1,
-            unit:product.unit
-        });
-
-    }
-
-    saveCart();
-
-    renderCart();
-
-    alert(product.name+" added to cart");
-
+function addCart(id){
+ let p=products.find(x=>x.id===id);
+ let item=cart.find(x=>x.id===id);
+ if(item)item.qty++;
+ else cart.push({id:p.id,name:p.name,price:p.price,unit:p.unit,qty:1});
+ save();renderCart();
 }
 
-
-function removeCart(id){
-
-    cart=cart.filter(x=>x.id!==id);
-
-    saveCart();
-
-    renderCart();
-
+function changeQty(id,n){
+ let x=cart.find(i=>i.id===id);
+ if(!x)return;
+ x.qty+=n;
+ if(x.qty<=0)cart=cart.filter(i=>i.id!==id);
+ save();renderCart();
 }
-
-
-function changeQty(id,change){
-
-    let item=cart.find(x=>x.id===id);
-
-    if(!item)return;
-
-    item.qty+=change;
-
-    if(item.qty<=0){
-
-        removeCart(id);
-        return;
-
-    }
-
-    saveCart();
-
-    renderCart();
-
-}
-
-
-function cartTotal(){
-
-    return cart.reduce(
-        (sum,item)=>sum+(item.price*item.qty),
-        0
-    );
-
-}
-
 
 function renderCart(){
-
-    let box=document.getElementById("cartItems");
-
-    box.innerHTML="";
-
-    cart.forEach(item=>{
-
-        box.innerHTML+=`
-
-        <div class="cart-item">
-
-            <span>
-                ${item.name}
-                x ${item.qty}
-            </span>
-
-            <span>
-                ₹${item.price*item.qty}
-
-                <button
-                    onclick="changeQty(${item.id},1)">
-                    +
-                </button>
-
-                <button
-                    onclick="changeQty(${item.id},-1)">
-                    -
-                </button>
-            </span>
-
-        </div>
-
-        `;
-
-    });
-
-    document.getElementById("cartTotal").innerText=
-        "Total: ₹"+cartTotal();
-
-    document.getElementById("cartCount").innerText=
-        cart.reduce((a,b)=>a+b.qty,0);
-
+ let box=document.getElementById("cartItems");
+ box.innerHTML="";
+ cart.forEach(x=>{
+ box.innerHTML+=`
+ <div class="cart-item">
+ <span>${x.name} × ${x.qty}</span>
+ <span>₹${x.price*x.qty}
+ <button onclick="changeQty(${x.id},1)">+</button>
+ <button onclick="changeQty(${x.id},-1)">−</button>
+ </span>
+ </div>`;
+ });
+ document.getElementById("cartTotal").innerText="Total: ₹"+total();
+ document.getElementById("cartCount").innerText=cart.reduce((a,b)=>a+b.qty,0);
 }
 
-
-/* CART MODAL */
+function total(){
+ return cart.reduce((a,b)=>a+b.price*b.qty,0);
+}
 
 function openCart(){
-
-    document.getElementById("cartModal").style.display="block";
-
-    let box=document.getElementById("modalCart");
-
-    box.innerHTML="";
-
-    cart.forEach(item=>{
-
-        box.innerHTML+=`
-        <p>
-        ${item.name} × ${item.qty}
-        = ₹${item.price*item.qty}
-        </p>
-        `;
-
-    });
-
-    document.getElementById("modalTotal").innerText=
-        "Total: ₹"+cartTotal();
-
+ document.getElementById("cartModal").style.display="block";
+ document.getElementById("modalCart").innerHTML=cart.map(x=>
+ `<p>${x.name} × ${x.qty} = ₹${x.price*x.qty}</p>`).join("");
+ document.getElementById("modalTotal").innerText="Total: ₹"+total();
 }
-
-
-/* CHECKOUT */
 
 function checkout(){
-
-    if(cart.length===0){
-
-        alert("Cart empty hai");
-
-        return;
-
-    }
-
-    document.getElementById("cartModal").style.display="none";
-
-    document.getElementById("checkoutModal").style.display="block";
-
+ if(!cart.length){alert("Cart empty hai");return}
+ closeModal("cartModal");
+ document.getElementById("checkoutModal").style.display="block";
 }
-
 
 function placeOrder(){
+ let name=document.getElementById("customerName").value.trim();
+ let phone=document.getElementById("customerPhone").value.trim();
+ let address=document.getElementById("customerAddress").value.trim();
+ let payment=document.getElementById("paymentMode").value;
 
-    let name=document.getElementById("customerName").value.trim();
+ if(!name||!phone||!address){
+  alert("Name, mobile aur address bhariye");
+  return;
+ }
 
-    let phone=document.getElementById("customerPhone").value.trim();
+ let id="LFT"+Date.now().toString().slice(-8);
 
-    let address=document.getElementById("customerAddress").value.trim();
+ orders.unshift({
+  id:id,
+  customer:{name,phone,address},
+  items:JSON.parse(JSON.stringify(cart)),
+  total:total(),
+  payment:payment,
+  status:"New Order",
+  riderId:"",
+  riderName:"",
+  deliveryPhoto:"",
+  createdAt:new Date().toLocaleString(),
+  deliveredAt:""
+ });
 
-    let payment=document.getElementById("paymentMode").value;
+ cart=[];
+ save();
+ renderCart();
+ closeModal("checkoutModal");
 
-    if(!name || !phone || !address){
-
-        alert("Name, mobile aur address bhariye");
-
-        return;
-
-    }
-
-    let orderId=
-        "FT"+Date.now().toString().slice(-8);
-
-    let order={
-
-        id:orderId,
-
-        customer:{
-            name:name,
-            phone:phone,
-            address:address
-        },
-
-        items:JSON.parse(JSON.stringify(cart)),
-
-        total:cartTotal(),
-
-        payment:payment,
-
-        status:"New Order",
-
-        rider:"",
-
-        deliveryPhoto:"",
-
-        createdAt:new Date().toLocaleString(),
-
-        receivedAt:"",
-
-        deliveredAt:""
-
-    };
-
-    orders.unshift(order);
-
-    saveOrders();
-
-    cart=[];
-
-    saveCart();
-
-    renderCart();
-
-    document.getElementById("checkoutModal").style.display="none";
-
-    alert(
-        "Order successfully placed!\n\nOrder ID: "+
-        orderId
-    );
-
-    showHome();
-
+ alert("Order placed!\nOrder ID: "+id);
 }
-
-
-/* LOGIN */
 
 function openLogin(){
-
-    document.getElementById("loginModal").style.display="block";
-
+ document.getElementById("loginModal").style.display="block";
 }
-
 
 function login(){
+ let type=document.getElementById("loginType").value;
+ let u=document.getElementById("loginUser").value;
+ let p=document.getElementById("loginPass").value;
 
-    let type=document.getElementById("loginType").value;
+ if(type==="admin"&&u==="admin"&&p==="1234"){
+  closeModal("loginModal");
+  openAdmin();
+  return;
+ }
 
-    let user=document.getElementById("loginUser").value;
+ if(type==="rider"){
+  let r=riders.find(x=>x.username===u&&x.password===p);
+  if(r){
+   currentRider=r;
+   closeModal("loginModal");
+   openRider();
+   return;
+  }
+ }
 
-    let pass=document.getElementById("loginPass").value;
-
-    if(
-        type==="admin" &&
-        user==="admin" &&
-        pass==="1234"
-    ){
-
-        currentUser="admin";
-
-        closeModal("loginModal");
-
-        openAdmin();
-
-        return;
-
-    }
-
-
-    if(
-        type==="rider" &&
-        user==="rider1" &&
-        pass==="1234"
-    ){
-
-        currentUser="rider1";
-
-        closeModal("loginModal");
-
-        openRider();
-
-        return;
-
-    }
-
-
-    document.getElementById("loginError").innerText=
-        "Username ya password galat hai";
-
+ document.getElementById("loginError").innerText="Username ya password galat hai";
 }
-
-
-/* ADMIN */
 
 function openAdmin(){
-
-    document.getElementById("home").classList.add("hidden");
-
-    document.getElementById("riderPanel").classList.add("hidden");
-
-    document.getElementById("adminPanel").classList.remove("hidden");
-
-    renderAdmin();
-
+ document.getElementById("home").classList.add("hidden");
+ document.getElementById("riderPanel").classList.add("hidden");
+ document.getElementById("adminPanel").classList.remove("hidden");
+ renderAdmin();
 }
-
 
 function renderAdmin(){
 
-    document.getElementById("totalOrders").innerText=
-        orders.length;
+ document.getElementById("totalOrders").innerText=orders.length;
+ document.getElementById("newOrders").innerText=orders.filter(x=>x.status==="New Order").length;
+ document.getElementById("deliveryOrders").innerText=orders.filter(x=>x.status==="Out for Delivery").length;
+ document.getElementById("deliveredOrders").innerText=orders.filter(x=>x.status==="Delivered").length;
 
-    document.getElementById("newOrders").innerText=
-        orders.filter(o=>o.status==="New Order").length;
+ let pb=document.getElementById("adminProducts");
+ pb.innerHTML="";
 
-    document.getElementById("deliveryOrders").innerText=
-        orders.filter(
-            o=>o.status==="Out for Delivery"
-        ).length;
+ products.forEach(p=>{
+ pb.innerHTML+=`
+ <div class="card" style="margin-bottom:10px">
+ <b>${p.name}</b>
+ <div class="price-control">
+ <button class="minus" onclick="changePrice(${p.id},-5)">− ₹5</button>
+ <b>₹${p.price}</b>
+ <button onclick="changePrice(${p.id},5)">+ ₹5</button>
+ <input type="number" value="${p.price}" onchange="setPrice(${p.id},this.value)">
+ </div>
+ </div>`;
+ });
 
-    document.getElementById("deliveredOrders").innerText=
-        orders.filter(
-            o=>o.status==="Delivered"
-        ).length;
-
-
-    /* PRICE CONTROL */
-
-    let priceBox=document.getElementById("adminProducts");
-
-    priceBox.innerHTML="";
-
-    products.forEach(p=>{
-
-        priceBox.innerHTML+=`
-
-        <div class="card" style="margin-bottom:10px">
-
-            <h3>${p.name}</h3>
-
-            <div class="price-control">
-
-                <button class="minus"
-                    onclick="changePrice(${p.id},-5)">
-                    - ₹5
-                </button>
-
-                <span>₹${p.price}</span>
-
-                <button
-                    onclick="changePrice(${p.id},5)">
-                    + ₹5
-                </button>
-
-                <input
-                    type="number"
-                    value="${p.price}"
-                    onchange="setPrice(${p.id},this.value)"
-                    style="width:120px">
-
-            </div>
-
-        </div>
-
-        `;
-
-    });
-
-
-    /* ORDERS */
-
-    let orderBox=document.getElementById("adminOrders");
-
-    orderBox.innerHTML="";
-
-    if(orders.length===0){
-
-        orderBox.innerHTML=
-            "<p>No orders yet.</p>";
-
-        return;
-
-    }
-
-
-    orders.forEach(o=>{
-
-        let items=o.items.map(i=>
-            `${i.name} × ${i.qty}`
-        ).join(", ");
-
-
-        let riderOptions=`
-            <option value="">Select Rider</option>
-            <option value="Rider 1"
-                ${o.rider==="Rider 1"?"selected":""}>
-                Rider 1
-            </option>
-        `;
-
-
-        orderBox.innerHTML+=`
-
-        <div class="order">
-
-            <h3>Order #${o.id}</h3>
-
-            <span class="status
-                ${o.status==="Delivered"?"delivered":""}
-                ${o.status==="Out for Delivery"?"delivery":""}
-                ${o.status==="Cancelled"?"cancelled":""}">
-                ${o.status}
-            </span>
-
-            <p><b>Customer:</b>
-                ${o.customer.name}
-            </p>
-
-            <p><b>Mobile:</b>
-                ${o.customer.phone}
-            </p>
-
-            <p><b>Address:</b>
-                ${o.customer.address}
-            </p>
-
-            <p><b>Items:</b> ${items}</p>
-
-            <p><b>Total:</b> ₹${o.total}</p>
-
-            <p><b>Payment:</b> ${o.payment}</p>
-
-            <p><b>Order Time:</b> ${o.createdAt}</p>
-
-            <br>
-
-            <select
-                onchange="assignRider('${o.id}',this.value)">
-                ${riderOptions}
-            </select>
-
-            <br>
-
-            <button class="info"
-                onclick="updateStatus('${o.id}','Received')">
-                Received
-            </button>
-
-            <button class="warning"
-                onclick="updateStatus('${o.id}','Processing')">
-                Processing
-            </button>
-
-            <button class="info"
-                onclick="updateStatus('${o.id}','Out for Delivery')">
-                Out for Delivery
-            </button>
-
-            <button class="primary"
-                onclick="updateStatus('${o.id}','Delivered')">
-                Delivered
-            </button>
-
-            <button class="danger"
-                onclick="updateStatus('${o.id}','Cancelled')">
-                Cancel
-            </button>
-
-            ${
-                o.deliveryPhoto
-                ?
-                `<br>
-                <p><b>📸 Delivery Proof:</b></p>
-                <img class="photo"
-                     src="${o.deliveryPhoto}">
-                `
-                :
-                ""
-            }
-
-        </div>
-
-        `;
-
-    });
-
+ renderRiderManagement();
+ renderAdminOrders();
 }
 
-
-/* PRICE */
-
-function changePrice(id,amount){
-
-    let p=products.find(x=>x.id===id);
-
-    if(!p)return;
-
-    p.price=Math.max(
-        1,
-        Number(p.price)+Number(amount)
-    );
-
-    saveProducts();
-
-    renderProducts();
-
-    renderAdmin();
-
+function changePrice(id,n){
+ let p=products.find(x=>x.id===id);
+ p.price=Math.max(1,p.price+n);
+ save();
+ renderProducts();
+ renderAdmin();
 }
 
-
-function setPrice(id,value){
-
-    let p=products.find(x=>x.id===id);
-
-    if(!p)return;
-
-    p.price=Math.max(1,Number(value));
-
-    saveProducts();
-
-    renderProducts();
-
-    renderAdmin();
-
+function setPrice(id,v){
+ let p=products.find(x=>x.id===id);
+ p.price=Math.max(1,Number(v));
+ save();
+ renderProducts();
+ renderAdmin();
 }
 
+function addRider(){
+ let name=prompt("Rider ka naam:");
+ if(!name)return;
+ let username=prompt("Rider username:");
+ if(!username)return;
+ let password=prompt("Rider password:");
+ if(!password)return;
 
-/* ORDER STATUS */
+ if(riders.some(x=>x.username===username)){
+  alert("Username already exists");
+  return;
+ }
 
-function updateStatus(id,status){
+ riders.push({
+  id:Date.now(),
+  name:name,
+  username:username,
+  password:password,
+  phone:""
+ });
 
-    let order=orders.find(o=>o.id===id);
-
-    if(!order)return;
-
-    order.status=status;
-
-    if(status==="Received"){
-
-        order.receivedAt=
-            new Date().toLocaleString();
-
-    }
-
-    if(status==="Delivered"){
-
-        order.deliveredAt=
-            new Date().toLocaleString();
-
-    }
-
-    saveOrders();
-
-    renderAdmin();
-
+ save();
+ renderAdmin();
 }
 
+function renderRiderManagement(){
+ let box=document.getElementById("riderManagement");
+ box.innerHTML="";
 
-/* RIDER ASSIGN */
-
-function assignRider(id,rider){
-
-    let order=orders.find(o=>o.id===id);
-
-    if(!order)return;
-
-    order.rider=rider;
-
-    saveOrders();
-
-    renderAdmin();
-
+ riders.forEach(r=>{
+ box.innerHTML+=`
+ <div class="rider-box">
+ <b>🚴 ${r.name}</b><br>
+ Username: ${r.username}<br>
+ <button class="danger" onclick="deleteRider(${r.id})">Delete Rider</button>
+ </div>`;
+ });
 }
 
+function deleteRider(id){
+ if(riders.length<=1){
+  alert("Kam se kam 1 rider hona chahiye");
+  return;
+ }
 
-/* RIDER */
+ riders=riders.filter(x=>x.id!==id);
+
+ orders.forEach(o=>{
+  if(o.riderId===id){
+   o.riderId="";
+   o.riderName="";
+  }
+ });
+
+ save();
+ renderAdmin();
+}
+
+function renderAdminOrders(){
+ let box=document.getElementById("adminOrders");
+ box.innerHTML="";
+
+ if(!orders.length){
+  box.innerHTML="<p>No orders yet.</p>";
+  return;
+ }
+
+ orders.forEach(o=>{
+
+ let options=`<option value="">Select Rider</option>`;
+
+ riders.forEach(r=>{
+  options+=`
+  <option value="${r.id}" ${String(o.riderId)===String(r.id)?"selected":""}>
+  ${r.name}
+  </option>`;
+ });
+
+ let items=o.items.map(i=>`${i.name} × ${i.qty}`).join(", ");
+
+ box.innerHTML+=`
+ <div class="order">
+ <h3>Order #${o.id}</h3>
+
+ <span class="status
+ ${o.status==="Delivered"?"delivered":""}
+ ${o.status==="Out for Delivery"?"delivery":""}
+ ${o.status==="Cancelled"?"cancelled":""}">
+ ${o.status}</span>
+
+ <p><b>Customer:</b> ${o.customer.name}</p>
+ <p><b>Mobile:</b> ${o.customer.phone}</p>
+ <p><b>Address:</b> ${o.customer.address}</p>
+ <p><b>Items:</b> ${items}</p>
+ <p><b>Total:</b> ₹${o.total}</p>
+ <p><b>Payment:</b> ${o.payment}</p>
+ <p><b>Order Time:</b> ${o.createdAt}</p>
+
+ <hr><br>
+
+ <b>🚴 Assign Rider</b>
+ <select onchange="assignRider('${o.id}',this.value)">
+ ${options}
+ </select>
+
+ ${o.riderName?`<p><b>Assigned Rider:</b> ${o.riderName}</p>`:""}
+
+ <button class="info" onclick="status('${o.id}','Received')">Received</button>
+ <button class="warning" onclick="status('${o.id}','Processing')">Processing</button>
+ <button class="info" onclick="status('${o.id}','Out for Delivery')">Out for Delivery</button>
+ <button class="danger" onclick="status('${o.id}','Cancelled')">Cancel</button>
+
+ ${o.deliveryPhoto?
+ `<p><b>📸 Delivery Photo:</b></p>
+ <img class="photo" src="${o.deliveryPhoto}">`
+ :""
+ }
+
+ ${o.deliveredAt?`<p><b>Delivered:</b> ${o.deliveredAt}</p>`:""}
+ </div>`;
+ });
+}
+
+function assignRider(orderId,riderId){
+ let o=orders.find(x=>x.id===orderId);
+ if(!o)return;
+
+ if(!riderId){
+  o.riderId="";
+  o.riderName="";
+ }else{
+  let r=riders.find(x=>String(x.id)===String(riderId));
+  if(r){
+   o.riderId=r.id;
+   o.riderName=r.name;
+   if(o.status==="New Order")o.status="Received";
+  }
+ }
+
+ save();
+ renderAdmin();
+}
+
+function status(id,s){
+ let o=orders.find(x=>x.id===id);
+ if(!o)return;
+ o.status=s;
+ if(s==="Delivered")o.deliveredAt=new Date().toLocaleString();
+ save();
+ renderAdmin();
+}
 
 function openRider(){
-
-    document.getElementById("home").classList.add("hidden");
-
-    document.getElementById("adminPanel").classList.add("hidden");
-
-    document.getElementById("riderPanel").classList.remove("hidden");
-
-    renderRider();
-
+ document.getElementById("home").classList.add("hidden");
+ document.getElementById("adminPanel").classList.add("hidden");
+ document.getElementById("riderPanel").classList.remove("hidden");
+ renderRider();
 }
-
 
 function renderRider(){
+ let box=document.getElementById("riderOrders");
+ box.innerHTML="";
 
-    let box=document.getElementById("riderOrders");
+ if(!currentRider)return;
 
-    box.innerHTML="";
+ let list=orders.filter(x=>String(x.riderId)===String(currentRider.id));
 
-    let riderOrders=orders.filter(
-        o=>o.rider==="Rider 1"
-    );
+ if(!list.length){
+  box.innerHTML="<p>No assigned orders.</p>";
+  return;
+ }
 
-    if(riderOrders.length===0){
+ list.forEach(o=>{
+ box.innerHTML+=`
+ <div class="order">
+ <h3>Order #${o.id}</h3>
+ <span class="status">${o.status}</span>
 
-        box.innerHTML=
-            "<p>No assigned orders.</p>";
+ <p><b>Customer:</b> ${o.customer.name}</p>
+ <p><b>Phone:</b> ${o.customer.phone}</p>
+ <p><b>Address:</b> ${o.customer.address}</p>
+ <p><b>Total:</b> ₹${o.total}</p>
 
-        return;
+ <button class="warning" onclick="riderStatus('${o.id}','Picked Up')">Picked Up</button>
+ <button class="info" onclick="riderStatus('${o.id}','Out for Delivery')">Out for Delivery</button>
 
-    }
+ <br><br>
+ <b>📸 Delivery Photo</b>
 
+ <input type="file"
+ accept="image/*"
+ capture="environment"
+ onchange="uploadPhoto(event,'${o.id}')">
 
-    riderOrders.forEach(o=>{
+ ${o.deliveryPhoto?
+ `<img class="photo" src="${o.deliveryPhoto}">`
+ :""
+ }
 
-        box.innerHTML+=`
+ <br>
 
-        <div class="order">
+ ${
+ o.deliveryPhoto
+ ?
+ `<button class="primary" onclick="deliver('${o.id}')">
+ ✅ Mark Delivered
+ </button>`
+ :
+ `<p style="color:red">Photo upload karna mandatory hai.</p>`
+ }
 
-            <h3>Order #${o.id}</h3>
-
-            <span class="status">${o.status}</span>
-
-            <p>
-                <b>Customer:</b>
-                ${o.customer.name}
-            </p>
-
-            <p>
-                <b>Phone:</b>
-                ${o.customer.phone}
-            </p>
-
-            <p>
-                <b>Address:</b>
-                ${o.customer.address}
-            </p>
-
-            <p>
-                <b>Total:</b>
-                ₹${o.total}
-            </p>
-
-            <button class="warning"
-                onclick="riderStatus('${o.id}','Picked Up')">
-                Picked Up
-            </button>
-
-            <button class="info"
-                onclick="riderStatus('${o.id}','Out for Delivery')">
-                Out for Delivery
-            </button>
-
-            <br><br>
-
-            <label>
-                📸 Delivery Photo
-            </label>
-
-            <input
-                type="file"
-                accept="image/*"
-                capture="environment"
-                onchange="uploadDeliveryPhoto(event,'${o.id}')">
-
-            ${
-                o.deliveryPhoto
-                ?
-                `<img class="photo"
-                    src="${o.deliveryPhoto}">`
-                :
-                ""
-            }
-
-            <br>
-
-            ${
-                o.deliveryPhoto
-                ?
-                `<button class="primary"
-                    onclick="riderDeliver('${o.id}')">
-                    ✅ Mark Delivered
-                </button>`
-                :
-                `<p style="color:#dc3545">
-                    Delivery photo mandatory
-                </p>`
-            }
-
-        </div>
-
-        `;
-
-    });
-
+ </div>`;
+ });
 }
 
-
-function riderStatus(id,status){
-
-    let order=orders.find(o=>o.id===id);
-
-    if(!order)return;
-
-    order.status=status;
-
-    saveOrders();
-
-    renderRider();
-
+function riderStatus(id,s){
+ let o=orders.find(x=>x.id===id);
+ if(!o)return;
+ o.status=s;
+ save();
+ renderRider();
 }
 
+function uploadPhoto(e,id){
+ let file=e.target.files[0];
+ if(!file)return;
 
-/* PHOTO */
+ let reader=new FileReader();
 
-function uploadDeliveryPhoto(event,id){
+ reader.onload=function(){
+  let o=orders.find(x=>x.id===id);
+  if(!o)return;
+  o.deliveryPhoto=reader.result;
+  save();
+  renderRider();
+ };
 
-    let file=event.target.files[0];
-
-    if(!file)return;
-
-    let reader=new FileReader();
-
-    reader.onload=function(){
-
-        let order=orders.find(o=>o.id===id);
-
-        if(!order)return;
-
-        order.deliveryPhoto=reader.result;
-
-        saveOrders();
-
-        renderRider();
-
-        alert("Delivery photo saved");
-
-    };
-
-    reader.readAsDataURL(file);
-
+ reader.readAsDataURL(file);
 }
 
+function deliver(id){
+ let o=orders.find(x=>x.id===id);
+ if(!o)return;
 
-function riderDeliver(id){
+ if(!o.deliveryPhoto){
+  alert("Pehle delivery photo upload karein.");
+  return;
+ }
 
-    let order=orders.find(o=>o.id===id);
+ o.status="Delivered";
+ o.deliveredAt=new Date().toLocaleString();
 
-    if(!order)return;
-
-    if(!order.deliveryPhoto){
-
-        alert(
-            "Delivery complete karne se pehle photo upload karein."
-        );
-
-        return;
-
-    }
-
-    order.status="Delivered";
-
-    order.deliveredAt=
-        new Date().toLocaleString();
-
-    saveOrders();
-
-    renderRider();
-
-    alert("Order Delivered Successfully");
-
+ save();
+ renderRider();
 }
-
-
-/* TRACKING */
 
 function openTrack(){
-
-    document.getElementById("trackModal").style.display="block";
-
+ document.getElementById("trackModal").style.display="block";
 }
-
 
 function trackOrder(){
+ let id=document.getElementById("trackId").value.trim();
+ let o=orders.find(x=>x.id.toLowerCase()===id.toLowerCase());
+ let box=document.getElementById("trackResult");
 
-    let id=
-        document.getElementById("trackId")
-        .value.trim();
+ if(!o){
+  box.innerHTML="<p style='color:red'>Order nahi mila.</p>";
+  return;
+ }
 
-    let order=orders.find(
-        o=>o.id.toLowerCase()===id.toLowerCase()
-    );
+ let states=["New Order","Received","Processing","Picked Up","Out for Delivery","Delivered"];
+ let current=states.indexOf(o.status);
 
-    let box=document.getElementById("trackResult");
+ let timeline=states.map((s,i)=>
+ `<div class="${i<=current?'active':''}">${s}</div>`
+ ).join("");
 
-    if(!order){
-
-        box.innerHTML=
-            `<p style="color:red">
-                Order nahi mila.
-            </p>`;
-
-        return;
-
-    }
-
-
-    let statuses=[
-        "New Order",
-        "Received",
-        "Processing",
-        "Picked Up",
-        "Out for Delivery",
-        "Delivered"
-    ];
-
-    let current=statuses.indexOf(order.status);
-
-
-    let timeline="";
-
-    statuses.forEach((s,index)=>{
-
-        timeline+=`
-
-        <div class="${index<=current?"active":""}">
-            ${s}
-        </div>
-
-        `;
-
-    });
-
-
-    box.innerHTML=`
-
-        <div class="track-result">
-
-            <h2>Order #${order.id}</h2>
-
-            <p>
-                <b>Status:</b> ${order.status}
-            </p>
-
-            <p>
-                <b>Customer:</b>
-                ${order.customer.name}
-            </p>
-
-            <p>
-                <b>Total:</b>
-                ₹${order.total}
-            </p>
-
-            <div class="timeline">
-                ${timeline}
-            </div>
-
-            ${
-                order.deliveryPhoto
-                ?
-                `<p><b>Delivery Proof:</b></p>
-                 <img class="photo"
-                      src="${order.deliveryPhoto}">
-                `
-                :
-                ""
-            }
-
-        </div>
-
-    `;
-
+ box.innerHTML=`
+ <div class="card">
+ <h2>Order #${o.id}</h2>
+ <p><b>Status:</b> ${o.status}</p>
+ <p><b>Rider:</b> ${o.riderName||"Not Assigned"}</p>
+ <p><b>Total:</b> ₹${o.total}</p>
+ <div class="timeline">${timeline}</div>
+ ${o.deliveryPhoto?
+ `<p><b>Delivery Proof:</b></p><img class="photo" src="${o.deliveryPhoto}">`
+ :""}
+ </div>`;
 }
-
-
-/* MODAL */
 
 function closeModal(id){
-
-    document.getElementById(id).style.display="none";
-
+ document.getElementById(id).style.display="none";
 }
 
-
-/* START */
-
 renderProducts();
-
 renderCart();
 
 </script>
 
 </body>
 </html>
-```
