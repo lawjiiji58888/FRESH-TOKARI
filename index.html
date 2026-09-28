@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,133 +7,62 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#f5f6f5;color:#222}
-button,input,textarea,select{font-family:Arial}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7f4;color:#222}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-.header{
-background:#fff;padding:12px;position:sticky;top:0;z-index:20;
-box-shadow:0 2px 8px #0002
-}
-.logo{font-size:22px;font-weight:900;color:#159447}
+.header{background:#fff;padding:12px;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px #0002}
+.top{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:23px;font-weight:900;color:#159447}
 .logo span{color:#ff7900}
-.top{display:flex;justify-content:space-between;align-items:center}
-.search{
-margin-top:10px;background:#f3f3f3;border-radius:25px;
-padding:12px 16px
-}
-.search input{border:0;background:none;outline:0;width:90%;font-size:15px}
-.location{background:#eaf5ff;padding:13px;font-weight:bold}
-.categories{
-display:flex;gap:12px;overflow:auto;background:white;padding:12px
-}
+.search{margin-top:10px;background:#f1f1f1;padding:11px 15px;border-radius:25px}
+.search input{border:0;background:none;outline:0;width:90%}
+.location{padding:12px;background:#eaf5ff;font-weight:bold}
+.categories{display:flex;gap:12px;overflow:auto;background:#fff;padding:12px}
 .cat{text-align:center;min-width:70px}
-.cat div{
-width:58px;height:58px;border-radius:50%;background:#e7f6e5;
-display:flex;align-items:center;justify-content:center;font-size:28px;margin:auto
-}
-.cat small{display:block;margin-top:5px}
-.banner{
-margin:10px;border-radius:15px;padding:18px;
-background:linear-gradient(90deg,#159447,#66bb6a);
-color:#fff;font-size:21px;font-weight:bold;text-align:center
-}
-.title{padding:12px;font-size:20px;font-weight:bold}
-.products{
-display:grid;grid-template-columns:repeat(2,1fr);gap:9px;padding:8px 8px 90px
-}
-.product{
-background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px #0001
-}
-.photo{height:170px;position:relative;background:#eee}
-.photo img{width:100%;height:100%;object-fit:cover}
+.cat-icon{width:55px;height:55px;border-radius:50%;background:#e5f5e5;margin:auto;display:flex;align-items:center;justify-content:center;font-size:28px}
+.banner{margin:10px;padding:20px;border-radius:15px;background:linear-gradient(90deg,#159447,#57bd65);color:#fff;text-align:center;font-size:22px;font-weight:bold}
+.title{font-size:21px;font-weight:bold;padding:12px}
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:8px 8px 90px}
+.product{background:#fff;border-radius:13px;overflow:hidden;box-shadow:0 2px 8px #0001}
+.product img{width:100%;height:165px;object-fit:cover}
 .info{padding:10px}
 .name{font-weight:bold;font-size:16px}
-.price{font-size:19px;font-weight:bold;margin:6px 0}
+.price{font-size:19px;font-weight:bold;margin:7px 0}
 .weights{display:flex;gap:4px}
-.weights button{
-flex:1;padding:7px 2px;border:1px solid #159447;
-background:white;color:#159447;border-radius:6px;font-size:11px;font-weight:bold
-}
-.weights button.active{background:#159447;color:white}
-.add{
-width:100%;margin-top:8px;padding:10px;border:0;
-background:#ff7b00;color:white;border-radius:7px;font-weight:bold
-}
-.bottom{
-position:fixed;bottom:0;left:0;right:0;height:70px;
-background:#fff;display:flex;z-index:50;box-shadow:0 -2px 10px #0002
-}
-.bottom button{
-flex:1;border:0;background:#fff;color:#555;font-size:12px
-}
-.bottom button b{display:block;font-size:23px}
-.page{display:none;padding-bottom:85px;min-height:100vh}
+.weights button{flex:1;padding:7px 2px;border:1px solid #159447;background:#fff;color:#159447;border-radius:6px;font-size:11px;font-weight:bold}
+.weights button.active{background:#159447;color:#fff}
+.add{width:100%;border:0;background:#ff7900;color:#fff;padding:10px;margin-top:8px;border-radius:7px;font-weight:bold}
+.page{display:none;min-height:100vh;padding-bottom:85px}
 .page.active{display:block}
-.pageHead{
-background:#159447;color:white;padding:18px;font-size:21px;font-weight:bold
-}
-.box{
-background:white;margin:12px;padding:15px;border-radius:12px;
-box-shadow:0 2px 8px #0001
-}
-.input{
-width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;
-margin:6px 0 10px;outline:0
-}
-.primary{
-width:100%;padding:12px;border:0;border-radius:8px;
-background:#159447;color:#fff;font-size:16px;font-weight:bold
-}
-.orange{
-width:100%;padding:12px;border:0;border-radius:8px;
-background:#ff7900;color:#fff;font-weight:bold
-}
-.order{
-background:white;margin:10px 12px;padding:14px;border-radius:12px;
-box-shadow:0 2px 8px #0001
-}
-.orderid{color:#087b38;font-weight:bold;cursor:pointer}
-.status{
-display:inline-block;background:#fff1d5;color:#9a5900;
-padding:6px 10px;border-radius:20px;margin:6px 0;font-weight:bold
-}
-.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.pagehead{background:#159447;color:#fff;padding:18px;font-size:21px;font-weight:bold}
+.box,.order{background:#fff;margin:12px;padding:15px;border-radius:12px;box-shadow:0 2px 8px #0001}
+.input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin:5px 0 10px;outline:none}
+.primary{width:100%;border:0;border-radius:8px;background:#159447;color:#fff;padding:12px;font-weight:bold}
+.orange{width:100%;border:0;border-radius:8px;background:#ff7900;color:#fff;padding:12px;font-weight:bold}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.status{display:inline-block;padding:6px 10px;background:#fff0cf;color:#915800;border-radius:20px;font-weight:bold}
+.orderid{font-weight:bold;color:#087b38;cursor:pointer}
 .small{font-size:12px;color:#777}
-.modal{
-display:none;position:fixed;inset:0;background:#0008;
-z-index:100;align-items:center;justify-content:center
-}
+.bottom{position:fixed;bottom:0;left:0;right:0;height:68px;background:#fff;display:flex;z-index:50;box-shadow:0 -2px 10px #0002}
+.bottom button{flex:1;border:0;background:#fff;color:#555;font-size:11px}
+.bottom b{display:block;font-size:22px}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:100;align-items:center;justify-content:center}
 .modal.show{display:flex}
-.modalbox{
-background:white;width:94%;max-width:440px;max-height:90vh;
-overflow:auto;border-radius:15px;padding:18px
-}
-.close{
-float:right;border:0;border-radius:50%;width:30px;height:30px
-}
-.toast{
-display:none;position:fixed;top:15px;right:15px;z-index:500;
-background:#159447;color:#fff;padding:13px 18px;border-radius:10px;
-box-shadow:0 4px 15px #0003
-}
-.tabs{display:flex;gap:7px;overflow:auto;padding:10px}
-.tabs button{
-border:0;border-radius:20px;padding:9px 14px;background:#eee;font-weight:bold
-}
-.tabs button.active{background:#159447;color:white}
-.step{display:flex;gap:12px;margin:17px 0}
-.circle{
-width:30px;height:30px;border-radius:50%;background:#ddd;
-display:flex;align-items:center;justify-content:center
-}
-.done .circle{background:#159447;color:white}
-.empty{text-align:center;padding:50px 15px;color:#777}
-.photoPreview{
-width:100%;max-height:300px;object-fit:contain;border-radius:10px
-}
-@media(min-width:800px){
-.products{grid-template-columns:repeat(4,1fr)}
-}
+.modalbox{width:95%;max-width:480px;max-height:92vh;overflow:auto;background:#fff;border-radius:15px;padding:18px}
+.close{float:right;border:0;border-radius:50%;width:30px;height:30px}
+.toast{display:none;position:fixed;top:15px;right:15px;z-index:500;background:#159447;color:#fff;padding:13px 18px;border-radius:10px}
+.tabs{display:flex;gap:7px;overflow:auto;padding:10px 0}
+.tabs button{border:0;padding:9px 14px;border-radius:20px;background:#eee;font-weight:bold}
+.tabs button.active{background:#159447;color:#fff}
+.adminProduct{border-bottom:1px solid #ddd;padding:15px 0}
+.adminProduct img{width:90px;height:70px;object-fit:cover;border-radius:8px}
+.deliveryPhoto{width:100%;max-height:350px;object-fit:contain;border-radius:10px}
+.step{display:flex;gap:12px;margin:18px 0}
+.circle{width:30px;height:30px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center}
+.done .circle{background:#159447;color:#fff}
+.empty{text-align:center;padding:50px;color:#777}
+.preview{width:100%;max-height:250px;object-fit:contain;border-radius:10px}
+@media(min-width:800px){.products{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 
@@ -149,31 +78,30 @@ width:100%;max-height:300px;object-fit:contain;border-radius:10px
 <div class="logo">LAW <span>FRESH TOKARI</span></div>
 <div>
 <button onclick="openCart()">🛒</button>
-<button onclick="openTrack()">🔎</button>
+<button onclick="showPage('track')">🔎</button>
 </div>
 </div>
 
 <div class="search">
-🔍 <input id="search" placeholder="Search sabji..." oninput="searchProduct()">
+🔍 <input id="search" placeholder="सब्जी खोजें..." oninput="searchProducts()">
 </div>
 </header>
 
-<div class="location" onclick="changeLocation()">
-📍 Delivery: <span id="location">Select Location</span>
+<div class="location" onclick="setLocation()">
+📍 Delivery: <span id="location">Location चुनें</span>
 </div>
 
 <div class="categories">
-<div class="cat" onclick="filter('All')"><div>🥦</div><small>All</small></div>
-<div class="cat" onclick="filter('Vegetables')"><div>🥬</div><small>Sabji</small></div>
-<div class="cat" onclick="filter('Fruits')"><div>🍎</div><small>Fruits</small></div>
-<div class="cat" onclick="filter('Potato')"><div>🥔</div><small>Potato</small></div>
-<div class="cat" onclick="filter('Tomato')"><div>🍅</div><small>Tomato</small></div>
-<div class="cat" onclick="filter('Onion')"><div>🧅</div><small>Onion</small></div>
+<div class="cat" onclick="filterProducts('All')"><div class="cat-icon">🥬</div>All</div>
+<div class="cat" onclick="filterProducts('Vegetables')"><div class="cat-icon">🥦</div>सब्जी</div>
+<div class="cat" onclick="filterProducts('Potato')"><div class="cat-icon">🥔</div>आलू</div>
+<div class="cat" onclick="filterProducts('Tomato')"><div class="cat-icon">🍅</div>टमाटर</div>
+<div class="cat" onclick="filterProducts('Onion')"><div class="cat-icon">🧅</div>प्याज़</div>
 </div>
 
 <div class="banner">
 🥕 LAW FRESH TOKARI 🥕<br>
-Fresh Sabji • Fresh Delivery
+Fresh Sabji • Fast Delivery
 </div>
 
 <div class="title">Fresh Products</div>
@@ -184,74 +112,109 @@ Fresh Sabji • Fresh Delivery
 
 <!-- CART -->
 <section id="cart" class="page">
-<div class="pageHead">🛒 My Cart</div>
+<div class="pagehead">🛒 My Cart</div>
 <div id="cartContent"></div>
 </section>
 
 
 <!-- ORDERS -->
 <section id="orders" class="page">
-<div class="pageHead">📦 My Orders</div>
-<div class="box">
-<b>🔎 Order ID पर click करके order track करें</b>
-</div>
+<div class="pagehead">📦 My Orders</div>
 <div id="ordersContent"></div>
 </section>
 
 
 <!-- TRACK -->
 <section id="track" class="page">
-<div class="pageHead">🚚 Track Order</div>
+<div class="pagehead">🚚 Track Order</div>
+
 <div class="box">
-<input id="trackInput" class="input" placeholder="Order ID जैसे LFT12345678">
-<button class="primary" onclick="trackOrder()">Track Order</button>
+<input id="trackInput" class="input" placeholder="Order ID डालें">
+<button class="primary" onclick="trackById()">Track Order</button>
 </div>
+
 <div id="trackContent"></div>
 </section>
 
 
 <!-- ADMIN -->
 <section id="admin" class="page">
-<div class="pageHead">👨‍💼 LAW FRESH TOKARI ADMIN</div>
 
-<div id="adminLoginBox" class="box">
+<div class="pagehead">👨‍💼 LAW FRESH TOKARI ADMIN</div>
+
+<div id="adminLogin" class="box">
 <h3>Admin Login</h3>
 <input id="adminUser" class="input" placeholder="Username">
-<input id="adminPassword" class="input" type="password" placeholder="Password">
-<button class="primary" onclick="loginAdmin()">Login</button>
+<input id="adminPass" class="input" type="password" placeholder="Password">
+<button class="primary" onclick="adminLogin()">Login</button>
 </div>
 
 <div id="adminPanel" style="display:none">
 
 <div class="tabs">
-<button class="active" onclick="adminTab('ordersTab',this)">📦 Orders</button>
-<button onclick="adminTab('priceTab',this)">💰 Prices</button>
-<button onclick="adminTab('riderTab',this)">🚴 Riders</button>
+<button class="active" onclick="adminTab('adminOrders',this)">📦 Orders</button>
+<button onclick="adminTab('adminProducts',this)">🥬 Products</button>
+<button onclick="adminTab('adminRiders',this)">🚴 Riders</button>
 </div>
 
-<div id="ordersTab" class="box">
-<div id="adminOrders"></div>
-</div>
 
-<div id="priceTab" class="box" style="display:none">
-<div id="adminPrices"></div>
-</div>
+<!-- ADMIN ORDERS -->
+<div id="adminOrders" class="box"></div>
 
-<div id="riderTab" class="box" style="display:none">
 
-<h3>➕ Add Rider</h3>
+<!-- ADMIN PRODUCTS -->
+<div id="adminProducts" class="box" style="display:none">
 
-<input id="newRiderName" class="input" placeholder="Rider Name">
-<input id="newRiderPhone" class="input" placeholder="Mobile">
-<input id="newRiderUser" class="input" placeholder="Rider Username">
-<input id="newRiderPass" class="input" placeholder="Rider Password">
+<h3>➕ नई सब्जी Add करें</h3>
 
-<button class="primary" onclick="createRider()">Create Rider</button>
+<input id="newName" class="input" placeholder="सब्जी का नाम">
+
+<select id="newCategory" class="input">
+<option value="Vegetables">Vegetables</option>
+<option value="Potato">Potato</option>
+<option value="Tomato">Tomato</option>
+<option value="Onion">Onion</option>
+</select>
+
+<input id="new250" class="input" type="number" placeholder="250 Gram Price">
+<input id="new500" class="input" type="number" placeholder="500 Gram Price">
+<input id="new1000" class="input" type="number" placeholder="1 KG Price">
+
+<label><b>🖼️ सब्जी की Photo</b></label>
+<input id="newImage" class="input" type="file" accept="image/*">
+
+<img id="newImagePreview" class="preview" style="display:none">
+
+<button class="primary" onclick="addNewProduct()">
+➕ Add Vegetable
+</button>
 
 <hr>
-<div id="riders"></div>
+
+<h3>Existing Products</h3>
+<div id="productAdminList"></div>
 
 </div>
+
+
+<!-- RIDERS -->
+<div id="adminRiders" class="box" style="display:none">
+
+<h3>➕ Rider Create करें</h3>
+
+<input id="riderName" class="input" placeholder="Rider Name">
+<input id="riderPhone" class="input" placeholder="Mobile Number">
+<input id="riderUsername" class="input" placeholder="Rider Username">
+<input id="riderPassword" class="input" placeholder="Rider Password">
+
+<button class="primary" onclick="addRider()">Create Rider</button>
+
+<hr>
+
+<div id="riderList"></div>
+
+</div>
+
 </div>
 </section>
 
@@ -259,26 +222,27 @@ Fresh Sabji • Fresh Delivery
 <!-- RIDER -->
 <section id="rider" class="page">
 
-<div class="pageHead">🚴 Rider Dashboard</div>
+<div class="pagehead">🚴 Rider Dashboard</div>
 
 <div id="riderLoginBox" class="box">
 <h3>Rider Login</h3>
-<input id="riderUser" class="input" placeholder="Username">
-<input id="riderPassword" class="input" type="password" placeholder="Password">
-<button class="primary" onclick="loginRider()">Login</button>
+<input id="loginRiderUser" class="input" placeholder="Username">
+<input id="loginRiderPass" class="input" type="password" placeholder="Password">
+<button class="primary" onclick="riderLogin()">Login</button>
 </div>
 
 <div id="riderPanel" style="display:none">
+
 <div class="box">
-<b>Rider:</b> <span id="loggedRider"></span>
-</div>
-<div id="riderOrders"></div>
+<b>Rider:</b> <span id="riderLoggedName"></span>
 </div>
 
+<div id="riderOrders"></div>
+
+</div>
 </section>
 
 
-<!-- BOTTOM -->
 <div class="bottom">
 <button onclick="showPage('home')"><b>🏠</b>Home</button>
 <button onclick="showPage('orders')"><b>📦</b>Orders</button>
@@ -291,12 +255,14 @@ Fresh Sabji • Fresh Delivery
 <!-- CHECKOUT -->
 <div id="checkoutModal" class="modal">
 <div class="modalbox">
+
 <button class="close" onclick="closeModal('checkoutModal')">×</button>
+
 <h2>Place Order</h2>
 
 <input id="customerName" class="input" placeholder="Name">
-<input id="customerPhone" class="input" placeholder="Mobile Number">
-<textarea id="customerAddress" class="input" placeholder="Full Delivery Address"></textarea>
+<input id="customerPhone" class="input" placeholder="Mobile">
+<textarea id="customerAddress" class="input" placeholder="Full Address"></textarea>
 
 <select id="payment" class="input">
 <option value="COD">Cash on Delivery</option>
@@ -305,24 +271,30 @@ Fresh Sabji • Fresh Delivery
 
 <div id="checkoutTotal"></div>
 
-<button class="primary" onclick="placeOrder()">Confirm Order</button>
+<button class="primary" onclick="placeOrder()">
+Confirm Order
+</button>
+
 </div>
 </div>
 
 
 <!-- DELIVERY PHOTO -->
-<div id="photoModal" class="modal">
+<div id="deliveryModal" class="modal">
 <div class="modalbox">
-<button class="close" onclick="closeModal('photoModal')">×</button>
 
-<h3>📸 Delivery Photo</h3>
+<button class="close" onclick="closeModal('deliveryModal')">×</button>
 
-<input id="deliveryPhoto" class="input" type="file" accept="image/*">
+<h2>📸 Delivery Photo</h2>
 
-<img id="photoPreview" class="photoPreview" style="display:none">
+<p>Rider parcel/customer delivery की photo upload करे:</p>
 
-<button class="primary" onclick="completeDelivery()">
-Confirm Delivered
+<input id="deliveryFile" class="input" type="file" accept="image/*">
+
+<img id="deliveryPreview" class="preview" style="display:none">
+
+<button class="primary" onclick="saveDelivery()">
+✅ Confirm Delivered
 </button>
 
 </div>
@@ -340,9 +312,18 @@ ref,
 push,
 set,
 update,
+remove,
 onValue
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+import {
+getStorage,
+ref as storageRef,
+uploadBytes,
+getDownloadURL
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 
 /* FIREBASE */
@@ -360,9 +341,10 @@ measurementId:"G-X9RW2F8XWZ"
 
 const app=initializeApp(firebaseConfig);
 const db=getDatabase(app);
+const storage=getStorage(app);
 
 
-/* PRODUCTS */
+/* DEFAULT PRODUCTS */
 
 let products=[
 {
@@ -448,48 +430,65 @@ name:"Ginger",
 category:"Vegetables",
 image:"https://images.unsplash.com/photo-1615485737651-9b6b6f5e4f95?w=800",
 prices:{250:40,500:75,1000:140}
-},
-{
-id:"apple",
-name:"Fresh Apple",
-category:"Fruits",
-image:"https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=800",
-prices:{250:50,500:95,1000:180}
 }
 ];
 
-
-let selected={};
+let selectedWeight={};
 let cart=JSON.parse(localStorage.getItem("LFT_CART")||"[]");
-let allOrders=[];
+let orders=[];
 let riders={};
 let currentRider=null;
 let deliveryOrderKey=null;
 
 
-/* START */
-
-renderProducts();
+/* LOAD PRODUCTS */
 
 onValue(ref(db,"products"),snap=>{
-const data=snap.val();
+
+let data=snap.val();
 
 if(data){
-Object.keys(data).forEach(id=>{
-let p=products.find(x=>x.id===id);
-if(p&&data[id].prices)p.prices=data[id].prices;
-});
-renderProducts();
-renderPrices();
-}
+
+Object.entries(data).forEach(([id,p])=>{
+
+let old=products.find(x=>x.id===id);
+
+if(old){
+
+old.name=p.name||old.name;
+old.category=p.category||old.category;
+old.image=p.image||old.image;
+old.prices=p.prices||old.prices;
+
+}else{
+
+products.push({
+id,
+name:p.name,
+category:p.category,
+image:p.image,
+prices:p.prices
 });
 
+}
+
+});
+
+}
+
+renderProducts();
+renderProductAdmin();
+
+});
+
+
+/* LOAD ORDERS */
 
 onValue(ref(db,"orders"),snap=>{
 
-const data=snap.val()||{};
+let data=snap.val()||{};
 
-allOrders=Object.entries(data)
+orders=Object.entries(data)
 .map(([key,value])=>({key,...value}))
 .sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
 
@@ -500,33 +499,31 @@ renderRiderOrders();
 });
 
 
+/* LOAD RIDERS */
+
 onValue(ref(db,"riders"),snap=>{
 
 riders=snap.val()||{};
 
 renderRiders();
-
 renderAdminOrders();
-
 renderRiderOrders();
 
 });
 
 
-/* PRODUCTS */
+/* PRODUCT DISPLAY */
 
 function renderProducts(list=products){
 
 document.getElementById("products").innerHTML=list.map(p=>{
 
-let w=selected[p.id]||1000;
+let w=selectedWeight[p.id]||1000;
 
 return `
 <div class="product">
 
-<div class="photo">
 <img src="${p.image}">
-</div>
 
 <div class="info">
 
@@ -537,24 +534,17 @@ return `
 <div class="weights">
 
 <button class="${w==250?'active':''}"
-onclick="selectWeight('${p.id}',250)">
-250 G
-</button>
+onclick="selectWeight('${p.id}',250)">250 G</button>
 
 <button class="${w==500?'active':''}"
-onclick="selectWeight('${p.id}',500)">
-500 G
-</button>
+onclick="selectWeight('${p.id}',500)">500 G</button>
 
 <button class="${w==1000?'active':''}"
-onclick="selectWeight('${p.id}',1000)">
-1 KG
-</button>
+onclick="selectWeight('${p.id}',1000)">1 KG</button>
 
 </div>
 
-<button class="add"
-onclick="addCart('${p.id}')">
+<button class="add" onclick="addToCart('${p.id}')">
 + ADD
 </button>
 
@@ -568,32 +558,33 @@ onclick="addCart('${p.id}')">
 
 
 window.selectWeight=(id,w)=>{
-selected[id]=w;
+
+selectedWeight[id]=w;
 renderProducts();
+
 };
 
 
-window.addCart=id=>{
+window.addToCart=id=>{
 
 let p=products.find(x=>x.id===id);
-let weight=selected[id]||1000;
+let w=selectedWeight[id]||1000;
 
-let old=cart.find(
-x=>x.id===id&&x.weight===weight
-);
+let old=cart.find(x=>x.id===id&&x.weight===w);
 
 if(old)old.qty++;
+
 else cart.push({
 id:p.id,
 name:p.name,
-weight,
-price:p.prices[weight],
+weight:w,
+price:p.prices[w],
 qty:1
 });
 
 localStorage.setItem("LFT_CART",JSON.stringify(cart));
 
-toast("🛒 Added to Cart");
+toast("🛒 Cart में add हो गया");
 
 };
 
@@ -606,14 +597,14 @@ let box=document.getElementById("cartContent");
 
 if(!cart.length){
 
-box.innerHTML=`<div class="empty">Cart खाली है 🛒</div>`;
+box.innerHTML='<div class="empty">Cart खाली है 🛒</div>';
 return;
 
 }
 
 let total=0;
 
-let html=`<div class="box">`;
+let html='<div class="box">';
 
 cart.forEach((x,i)=>{
 
@@ -624,14 +615,14 @@ html+=`
 
 <div>
 <b>${x.name}</b><br>
-<span class="small">${x.weight===1000?"1 KG":x.weight+" G"}</span><br>
+${x.weight===1000?"1 KG":x.weight+" G"}<br>
 ₹${x.price} × ${x.qty}
 </div>
 
 <div>
-<button onclick="qty(${i},-1)">−</button>
+<button onclick="changeQty(${i},-1)">−</button>
 ${x.qty}
-<button onclick="qty(${i},1)">+</button>
+<button onclick="changeQty(${i},1)">+</button>
 </div>
 
 </div>
@@ -649,7 +640,7 @@ box.innerHTML=html;
 };
 
 
-window.qty=(i,n)=>{
+window.changeQty=(i,n)=>{
 
 cart[i].qty+=n;
 
@@ -664,11 +655,6 @@ openCart();
 
 window.checkout=()=>{
 
-if(!cart.length){
-toast("Cart खाली है");
-return;
-}
-
 let total=cart.reduce((a,x)=>a+x.price*x.qty,0);
 
 document.getElementById("checkoutTotal").innerHTML=
@@ -679,7 +665,7 @@ document.getElementById("checkoutModal").classList.add("show");
 };
 
 
-/* ORDER */
+/* PLACE ORDER */
 
 window.placeOrder=async()=>{
 
@@ -697,9 +683,9 @@ return;
 
 let total=cart.reduce((a,x)=>a+x.price*x.qty,0);
 
-let orderRef=push(ref(db,"orders"));
-
 let orderId="LFT"+Date.now().toString().slice(-8);
+
+let orderRef=push(ref(db,"orders"));
 
 await set(orderRef,{
 
@@ -720,7 +706,6 @@ payment,
 status:"Received",
 
 riderId:"",
-
 riderName:"Not Assigned",
 
 deliveryPhoto:"",
@@ -752,32 +737,28 @@ let box=document.getElementById("ordersContent");
 
 if(!box)return;
 
-if(!allOrders.length){
+if(!orders.length){
 
-box.innerHTML=`<div class="empty">No orders yet</div>`;
+box.innerHTML='<div class="empty">No orders yet</div>';
 return;
 
 }
 
-box.innerHTML=allOrders.map(o=>`
+box.innerHTML=orders.map(o=>`
 
 <div class="order">
 
-<div class="orderid"
-onclick="openTracking('${o.orderId}')">
+<div class="orderid" onclick="openTrack('${o.orderId}')">
 Order ID: ${o.orderId}
 </div>
 
-<div class="small">${o.date||""}</div>
-
-<h3>₹${o.total}</h3>
+<p>₹${o.total}</p>
 
 <span class="status">${o.status}</span>
 
 <p>🚴 Rider: <b>${o.riderName||"Not Assigned"}</b></p>
 
-<button class="primary"
-onclick="openTracking('${o.orderId}')">
+<button class="primary" onclick="openTrack('${o.orderId}')">
 Track Order
 </button>
 
@@ -788,20 +769,31 @@ Track Order
 }
 
 
-/* TRACKING */
+/* TRACK */
 
-window.openTracking=id=>{
-
-let o=allOrders.find(x=>x.orderId===id);
-
-if(!o){
-toast("Order नहीं मिला");
-return;
-}
+window.openTrack=id=>{
 
 showPage("track");
 
+let o=orders.find(x=>x.orderId===id);
+
+if(!o){
+
+toast("Order नहीं मिला");
+return;
+
+}
+
 renderTracking(o);
+
+};
+
+
+window.trackById=()=>{
+
+let id=document.getElementById("trackInput").value.trim();
+
+openTrack(id);
 
 };
 
@@ -830,21 +822,16 @@ document.getElementById("trackContent").innerHTML=`
 
 <p>📍 ${o.customer?.address||""}</p>
 
-<p>🚴 Rider:
-<b>${o.riderName||"Not Assigned"}</b>
-</p>
+<p>🚴 Rider: <b>${o.riderName||"Not Assigned"}</b></p>
 
 ${steps.map((s,i)=>`
 
 <div class="step ${i<=index?'done':''}">
 
-<div class="circle">
-${i<=index?'✓':i+1}
-</div>
+<div class="circle">${i<=index?'✓':i+1}</div>
 
 <div>
 <b>${s}</b>
-${s===o.status?'<br><span class="small">Current Status</span>':''}
 </div>
 
 </div>
@@ -853,51 +840,62 @@ ${s===o.status?'<br><span class="small">Current Status</span>':''}
 
 ${o.deliveryPhoto?`
 
+<hr>
 <h3>📸 Delivery Photo</h3>
-<img src="${o.deliveryPhoto}" class="photoPreview">
+<img src="${o.deliveryPhoto}" class="deliveryPhoto">
 
 `:''}
 
 </div>
-
 `;
 
 }
 
 
-/* TRACK BY ID */
+/* ADMIN LOGIN */
 
-window.trackOrder=()=>{
-
-let id=document.getElementById("trackInput").value.trim();
-
-openTracking(id);
-
-};
-
-
-/* ADMIN */
-
-window.loginAdmin=()=>{
+window.adminLogin=()=>{
 
 let u=document.getElementById("adminUser").value;
-let p=document.getElementById("adminPassword").value;
+let p=document.getElementById("adminPass").value;
 
 if(u==="admin"&&p==="1234"){
 
-document.getElementById("adminLoginBox").style.display="none";
+document.getElementById("adminLogin").style.display="none";
 document.getElementById("adminPanel").style.display="block";
 
-requestNotification();
-
 renderAdminOrders();
-renderPrices();
+renderProductAdmin();
 renderRiders();
 
-}else toast("Wrong Admin Login");
+}else{
+
+toast("Wrong Admin Login");
+
+}
 
 };
 
+
+/* ADMIN TABS */
+
+window.adminTab=(id,btn)=>{
+
+["adminOrders","adminProducts","adminRiders"]
+.forEach(x=>{
+document.getElementById(x).style.display=
+x===id?"block":"none";
+});
+
+document.querySelectorAll(".tabs button")
+.forEach(x=>x.classList.remove("active"));
+
+btn.classList.add("active");
+
+};
+
+
+/* ADMIN ORDERS */
 
 function renderAdminOrders(){
 
@@ -905,39 +903,23 @@ let box=document.getElementById("adminOrders");
 
 if(!box)return;
 
-if(!allOrders.length){
-
-box.innerHTML=`<div class="empty">No orders received</div>`;
-return;
-
-}
-
 box.innerHTML=`
 
-<h3>📦 Orders (${allOrders.length})</h3>
+<h3>📦 All Orders (${orders.length})</h3>
 
-${allOrders.map(o=>`
+${orders.map(o=>`
 
 <div class="order">
 
 <div class="orderid">${o.orderId}</div>
 
-<p>
-👤 <b>${o.customer?.name||""}</b>
-</p>
-
-<p>
-📞 ${o.customer?.phone||""}
-</p>
-
-<p>
-📍 ${o.customer?.address||""}
-</p>
-
-<p>💰 <b>₹${o.total}</b></p>
+<p>👤 ${o.customer?.name}</p>
+<p>📞 ${o.customer?.phone}</p>
+<p>📍 ${o.customer?.address}</p>
+<p>💰 ₹${o.total}</p>
 
 <select class="input"
-onchange="changeStatus('${o.key}',this.value)">
+onchange="changeOrderStatus('${o.key}',this.value)">
 
 ${[
 "Received",
@@ -946,9 +928,7 @@ ${[
 "Out for Delivery",
 "Delivered"
 ].map(s=>`
-<option ${o.status===s?"selected":""}>
-${s}
-</option>
+<option ${o.status===s?"selected":""}>${s}</option>
 `).join("")}
 
 </select>
@@ -956,7 +936,7 @@ ${s}
 <select class="input"
 onchange="assignRider('${o.key}',this.value)">
 
-<option value="">🚴 Select Rider</option>
+<option value="">🚴 Rider Assign करें</option>
 
 ${Object.entries(riders).map(([id,r])=>`
 
@@ -970,11 +950,14 @@ ${r.name}
 </select>
 
 ${o.deliveryPhoto?`
-<img src="${o.deliveryPhoto}" class="photoPreview">
+
+<h4>📸 Delivery Photo</h4>
+<img src="${o.deliveryPhoto}" class="deliveryPhoto">
+
 `:''}
 
 <button class="primary"
-onclick="openTracking('${o.orderId}')">
+onclick="openTrack('${o.orderId}')">
 View Tracking
 </button>
 
@@ -987,7 +970,7 @@ View Tracking
 }
 
 
-window.changeStatus=async(key,status)=>{
+window.changeOrderStatus=async(key,status)=>{
 
 await update(
 ref(db,"orders/"+key),
@@ -1001,15 +984,15 @@ toast("✅ Status Updated");
 
 window.assignRider=async(key,riderId)=>{
 
-let rider=riders[riderId];
+if(!riderId)return;
 
-if(!rider)return;
+let r=riders[riderId];
 
 await update(
 ref(db,"orders/"+key),
 {
 riderId,
-riderName:rider.name,
+riderName:r.name,
 status:"Confirmed"
 }
 );
@@ -1019,52 +1002,158 @@ toast("🚴 Rider Assigned");
 };
 
 
-/* PRICE */
+/* ADD PRODUCT */
 
-function renderPrices(){
+document.getElementById("newImage")
+.addEventListener("change",e=>{
 
-let box=document.getElementById("adminPrices");
+let file=e.target.files[0];
+
+if(!file)return;
+
+let reader=new FileReader();
+
+reader.onload=()=>{
+let img=document.getElementById("newImagePreview");
+img.src=reader.result;
+img.style.display="block";
+};
+
+reader.readAsDataURL(file);
+
+});
+
+
+window.addNewProduct=async()=>{
+
+let name=document.getElementById("newName").value.trim();
+let category=document.getElementById("newCategory").value;
+let p250=Number(document.getElementById("new250").value);
+let p500=Number(document.getElementById("new500").value);
+let p1000=Number(document.getElementById("new1000").value);
+let file=document.getElementById("newImage").files[0];
+
+if(!name||!p250||!p500||!p1000){
+
+toast("Name और तीनों price भरें");
+return;
+
+}
+
+if(!file){
+
+toast("सब्जी की photo लगाएँ");
+return;
+
+}
+
+toast("⏳ Photo upload हो रही है...");
+
+let id="product_"+Date.now();
+
+try{
+
+let imageRef=storageRef(
+storage,
+"products/"+id+"_"+file.name
+);
+
+await uploadBytes(imageRef,file);
+
+let imageURL=await getDownloadURL(imageRef);
+
+let product={
+
+name,
+category,
+image:imageURL,
+
+prices:{
+250:p250,
+500:p500,
+1000:p1000
+}
+
+};
+
+await set(ref(db,"products/"+id),product);
+
+toast("✅ नई सब्जी Add हो गई");
+
+document.getElementById("newName").value="";
+document.getElementById("new250").value="";
+document.getElementById("new500").value="";
+document.getElementById("new1000").value="";
+document.getElementById("newImage").value="";
+document.getElementById("newImagePreview").style.display="none";
+
+}catch(e){
+
+console.error(e);
+toast("❌ Photo upload error: "+e.message);
+
+}
+
+};
+
+
+/* ADMIN PRODUCT LIST */
+
+function renderProductAdmin(){
+
+let box=document.getElementById("productAdminList");
 
 if(!box)return;
 
-box.innerHTML=`
+box.innerHTML=products.map(p=>`
 
-<h3>💰 Change Prices</h3>
+<div class="adminProduct">
 
-${products.map(p=>`
+<div class="row">
 
-<div class="box">
+<img src="${p.image}">
 
-<b>${p.name}</b>
-
-<p>
-250G: ₹${p.prices[250]}
-<button onclick="priceChange('${p.id}',250,5)">+</button>
-<button onclick="priceChange('${p.id}',250,-5)">−</button>
-</p>
-
-<p>
-500G: ₹${p.prices[500]}
-<button onclick="priceChange('${p.id}',500,5)">+</button>
-<button onclick="priceChange('${p.id}',500,-5)">−</button>
-</p>
-
-<p>
-1KG: ₹${p.prices[1000]}
-<button onclick="priceChange('${p.id}',1000,5)">+</button>
-<button onclick="priceChange('${p.id}',1000,-5)">−</button>
-</p>
+<div>
+<b>${p.name}</b><br>
+250G ₹${p.prices[250]}<br>
+500G ₹${p.prices[500]}<br>
+1KG ₹${p.prices[1000]}
+</div>
 
 </div>
 
-`).join("")}
+<br>
 
-`;
+<button onclick="changePrice('${p.id}',250,5)">250G +₹5</button>
+<button onclick="changePrice('${p.id}',250,-5)">250G -₹5</button>
+
+<br><br>
+
+<button onclick="changePrice('${p.id}',500,5)">500G +₹5</button>
+<button onclick="changePrice('${p.id}',500,-5)">500G -₹5</button>
+
+<br><br>
+
+<button onclick="changePrice('${p.id}',1000,5)">1KG +₹5</button>
+<button onclick="changePrice('${p.id}',1000,-5)">1KG -₹5</button>
+
+<br><br>
+
+<button class="orange"
+onclick="deleteProduct('${p.id}')">
+🗑️ Delete
+</button>
+
+</div>
+
+`).join("");
 
 }
 
 
-window.priceChange=async(id,w,change)=>{
+/* PRICE CHANGE */
+
+window.changePrice=async(id,w,change)=>{
 
 let p=products.find(x=>x.id===id);
 
@@ -1073,31 +1162,49 @@ p.prices[w]=Math.max(
 p.prices[w]+change
 );
 
-await set(
+await update(
 ref(db,"products/"+id),
 {prices:p.prices}
 );
 
-renderPrices();
-renderProducts();
-
 toast("💰 Price Updated");
+
+renderProductAdmin();
+renderProducts();
 
 };
 
 
-/* RIDER CREATE */
+/* DELETE PRODUCT */
 
-window.createRider=async()=>{
+window.deleteProduct=async id=>{
 
-let name=document.getElementById("newRiderName").value.trim();
-let phone=document.getElementById("newRiderPhone").value.trim();
-let user=document.getElementById("newRiderUser").value.trim();
-let pass=document.getElementById("newRiderPass").value.trim();
+if(!confirm("इस सब्जी को delete करना है?"))return;
 
-if(!name||!phone||!user||!pass){
+await remove(ref(db,"products/"+id));
 
-toast("Rider की सभी details भरें");
+products=products.filter(x=>x.id!==id);
+
+renderProducts();
+renderProductAdmin();
+
+toast("🗑️ Product Deleted");
+
+};
+
+
+/* ADD RIDER */
+
+window.addRider=async()=>{
+
+let name=document.getElementById("riderName").value.trim();
+let phone=document.getElementById("riderPhone").value.trim();
+let username=document.getElementById("riderUsername").value.trim();
+let password=document.getElementById("riderPassword").value.trim();
+
+if(!name||!phone||!username||!password){
+
+toast("Rider की पूरी details भरें");
 return;
 
 }
@@ -1107,53 +1214,49 @@ let riderRef=push(ref(db,"riders"));
 await set(riderRef,{
 name,
 phone,
-username:user,
-password:pass
+username,
+password
 });
 
-document.getElementById("newRiderName").value="";
-document.getElementById("newRiderPhone").value="";
-document.getElementById("newRiderUser").value="";
-document.getElementById("newRiderPass").value="";
-
 toast("🚴 Rider Created");
+
+document.getElementById("riderName").value="";
+document.getElementById("riderPhone").value="";
+document.getElementById("riderUsername").value="";
+document.getElementById("riderPassword").value="";
 
 };
 
 
+/* RIDER LIST */
+
 function renderRiders(){
 
-let box=document.getElementById("riders");
+let box=document.getElementById("riderList");
 
 if(!box)return;
 
-box.innerHTML=`
-
-<h3>Riders</h3>
-
-${Object.entries(riders).map(([id,r])=>`
+box.innerHTML=Object.entries(riders).map(([id,r])=>`
 
 <div class="order">
 
 🚴 <b>${r.name}</b><br>
 📞 ${r.phone}<br>
-👤 Username: ${r.username}
+👤 ${r.username}
 
 </div>
 
-`).join("")}
+`).join("");
 
-`;
-
-};
+}
 
 
 /* RIDER LOGIN */
 
-window.loginRider=()=>{
+window.riderLogin=()=>{
 
-let u=document.getElementById("riderUser").value;
-let p=document.getElementById("riderPassword").value;
+let u=document.getElementById("loginRiderUser").value;
+let p=document.getElementById("loginRiderPass").value;
 
 let found=Object.entries(riders)
 .find(([id,r])=>
@@ -1174,14 +1277,14 @@ id:found[0],
 
 document.getElementById("riderLoginBox").style.display="none";
 document.getElementById("riderPanel").style.display="block";
-document.getElementById("loggedRider").innerText=currentRider.name;
-
-requestNotification();
+document.getElementById("riderLoggedName").innerText=currentRider.name;
 
 renderRiderOrders();
 
 };
 
+
+/* RIDER ORDERS */
 
 function renderRiderOrders(){
 
@@ -1189,18 +1292,18 @@ let box=document.getElementById("riderOrders");
 
 if(!box||!currentRider)return;
 
-let orders=allOrders.filter(
+let myOrders=orders.filter(
 o=>o.riderId===currentRider.id
 );
 
-if(!orders.length){
+if(!myOrders.length){
 
-box.innerHTML=`<div class="empty">अभी कोई assigned order नहीं है 🚴</div>`;
+box.innerHTML='<div class="empty">कोई assigned order नहीं है</div>';
 return;
 
 }
 
-box.innerHTML=orders.map(o=>`
+box.innerHTML=myOrders.map(o=>`
 
 <div class="order">
 
@@ -1208,33 +1311,23 @@ box.innerHTML=orders.map(o=>`
 
 <h3>₹${o.total}</h3>
 
-<p>👤 ${o.customer?.name||""}</p>
-
-<p>📞 ${o.customer?.phone||""}</p>
-
-<p>📍 ${o.customer?.address||""}</p>
+<p>👤 ${o.customer?.name}</p>
+<p>📞 ${o.customer?.phone}</p>
+<p>📍 ${o.customer?.address}</p>
 
 <span class="status">${o.status}</span>
 
 <select class="input"
 onchange="riderStatus('${o.key}',this.value)">
 
-${[
-"Confirmed",
-"Preparing",
-"Out for Delivery"
-].map(s=>`
-
-<option ${o.status===s?"selected":""}>
-${s}
-</option>
-
-`).join("")}
+<option>Confirmed</option>
+<option>Preparing</option>
+<option>Out for Delivery</option>
 
 </select>
 
 <button class="orange"
-onclick="openDeliveryPhoto('${o.key}')">
+onclick="openDelivery('${o.key}')">
 📸 Delivered + Photo
 </button>
 
@@ -1259,17 +1352,17 @@ toast("Status Updated");
 
 /* DELIVERY PHOTO */
 
-window.openDeliveryPhoto=key=>{
+window.openDelivery=key=>{
 
 deliveryOrderKey=key;
 
-document.getElementById("photoModal")
+document.getElementById("deliveryModal")
 .classList.add("show");
 
 };
 
 
-document.getElementById("deliveryPhoto")
+document.getElementById("deliveryFile")
 .addEventListener("change",e=>{
 
 let file=e.target.files[0];
@@ -1279,8 +1372,9 @@ if(!file)return;
 let reader=new FileReader();
 
 reader.onload=()=>{
-document.getElementById("photoPreview").src=reader.result;
-document.getElementById("photoPreview").style.display="block";
+let img=document.getElementById("deliveryPreview");
+img.src=reader.result;
+img.style.display="block";
 };
 
 reader.readAsDataURL(file);
@@ -1288,59 +1382,61 @@ reader.readAsDataURL(file);
 });
 
 
-window.completeDelivery=async()=>{
+window.saveDelivery=async()=>{
 
-let photo=document.getElementById("photoPreview").src;
+let file=document.getElementById("deliveryFile").files[0];
 
-if(!photo||photo===""){
+if(!file){
 
-toast("पहले delivery photo डालें");
+toast("Delivery photo चुनें");
 return;
 
 }
+
+try{
+
+toast("⏳ Photo upload हो रही है...");
+
+let photoRef=storageRef(
+storage,
+"delivery/"+deliveryOrderKey+"_"+Date.now()+"_"+file.name
+);
+
+await uploadBytes(photoRef,file);
+
+let url=await getDownloadURL(photoRef);
 
 await update(
 ref(db,"orders/"+deliveryOrderKey),
 {
 status:"Delivered",
-deliveryPhoto:photo,
+deliveryPhoto:url,
 deliveredAt:Date.now()
 }
 );
 
-closeModal("photoModal");
+closeModal("deliveryModal");
+
+document.getElementById("deliveryFile").value="";
+document.getElementById("deliveryPreview").style.display="none";
 
 toast("✅ Delivered + Photo Saved");
 
-};
+}catch(e){
 
+console.error(e);
+toast("❌ Photo upload error: "+e.message);
 
-/* NAV */
+}
 
-window.showPage=id=>{
-
-document.querySelectorAll(".page")
-.forEach(x=>x.classList.remove("active"));
-
-document.getElementById(id)
-.classList.add("active");
-
-scrollTo(0,0);
-
-};
-
-
-window.openTrack=()=>{
-showPage("track");
 };
 
 
 /* SEARCH */
 
-window.searchProduct=()=>{
+window.searchProducts=()=>{
 
-let q=document.getElementById("search")
-.value.toLowerCase();
+let q=document.getElementById("search").value.toLowerCase();
 
 renderProducts(
 products.filter(p=>
@@ -1351,63 +1447,48 @@ p.name.toLowerCase().includes(q)
 };
 
 
-window.filter=cat=>{
+window.filterProducts=cat=>{
 
-if(cat==="All"){
-renderProducts();
-return;
-}
-
-renderProducts(
-products.filter(p=>
-p.category===cat
-)
-);
+if(cat==="All")renderProducts();
+else renderProducts(products.filter(p=>p.category===cat));
 
 };
 
 
 /* LOCATION */
 
-window.changeLocation=()=>{
+window.setLocation=()=>{
 
-let x=prompt("Delivery Location:");
+let x=prompt("Delivery Location डालें:");
 
 if(x){
 
 document.getElementById("location").innerText=x;
-
 localStorage.setItem("LFT_LOCATION",x);
 
 }
 
 };
 
-let oldLocation=localStorage.getItem("LFT_LOCATION");
+let savedLocation=localStorage.getItem("LFT_LOCATION");
 
-if(oldLocation)
-document.getElementById("location").innerText=oldLocation;
+if(savedLocation)
+document.getElementById("location").innerText=savedLocation;
 
 
-/* TABS */
+/* NAVIGATION */
 
-window.adminTab=(id,button)=>{
+window.showPage=id=>{
 
-["ordersTab","priceTab","riderTab"]
-.forEach(x=>
-document.getElementById(x).style.display=
-x===id?"block":"none"
-);
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
 
-document.querySelectorAll(".tabs button")
-.forEach(x=>x.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 
-button.classList.add("active");
+scrollTo(0,0);
 
 };
 
-
-/* MODALS */
 
 window.closeModal=id=>{
 document.getElementById(id).classList.remove("show");
@@ -1416,45 +1497,16 @@ document.getElementById(id).classList.remove("show");
 
 /* TOAST */
 
-function toast(text){
+function toast(msg){
 
 let t=document.getElementById("toast");
 
-t.innerText=text;
+t.innerText=msg;
 t.style.display="block";
 
 setTimeout(()=>{
 t.style.display="none";
 },3000);
-
-}
-
-
-/* NOTIFICATION */
-
-async function requestNotification(){
-
-if("Notification" in window){
-
-if(Notification.permission==="default")
-await Notification.requestPermission();
-
-}
-
-}
-
-function notify(title,text){
-
-if(
-"Notification" in window &&
-Notification.permission==="granted"
-){
-
-new Notification(title,{
-body:text
-});
-
-}
 
 }
 
