@@ -77,6 +77,7 @@ button{cursor:pointer}
 <div class="top">
 <div class="logo">LAW <span>FRESH TOKARI</span></div>
 <div>
+<button class="notifyBell" onclick="showNotifications()">🔔<span id="notifyDot" class="notifyDot">0</span></button>
 <button onclick="openCart()">🛒</button>
 <button onclick="showPage('track')">🔎</button>
 </div>
@@ -104,11 +105,16 @@ button{cursor:pointer}
 Fresh Sabji • Fast Delivery
 </div>
 
-<div class="title">Fresh Products</div>
+<div class="title">🥬 All Fresh Products <span class="small">— सभी categories एक साथ</span></div>
 <div id="products" class="products"></div>
 
 </section>
 
+<!-- NOTIFICATIONS -->
+<section id="notifications" class="page">
+<div class="pagehead">🔔 Notifications</div>
+<div id="notificationsContent"></div>
+</section>
 
 <!-- CART -->
 <section id="cart" class="page">
@@ -150,6 +156,10 @@ Fresh Sabji • Fast Delivery
 </div>
 
 <div id="adminPanel" style="display:none">
+
+<div class="box">
+<button class="primary" onclick="enableNotifications()">🔔 Admin Notifications ON करें</button>
+</div>
 
 <div class="tabs">
 <button class="active" onclick="adminTab('adminOrders',this)">📦 Orders</button>
@@ -234,6 +244,10 @@ Fresh Sabji • Fast Delivery
 <div id="riderPanel" style="display:none">
 
 <div class="box">
+<button class="primary" onclick="enableNotifications()">🔔 Rider Notifications ON करें</button>
+</div>
+
+<div class="box">
 <b>Rider:</b> <span id="riderLoggedName"></span>
 </div>
 
@@ -246,6 +260,7 @@ Fresh Sabji • Fast Delivery
 <div class="bottom">
 <button onclick="showPage('home')"><b>🏠</b>Home</button>
 <button onclick="showPage('orders')"><b>📦</b>Orders</button>
+<button onclick="showNotifications()"><b>🔔</b>Notify</button>
 <button onclick="openCart()"><b>🛒</b>Cart</button>
 <button onclick="showPage('admin')"><b>👨‍💼</b>Admin</button>
 <button onclick="showPage('rider')"><b>🚴</b>Rider</button>
@@ -439,6 +454,10 @@ let orders=[];
 let riders={};
 let currentRider=null;
 let deliveryOrderKey=null;
+let adminLoggedIn=false;
+let previousOrders={};
+let notifications=JSON.parse(localStorage.getItem("LFT_NOTIFICATIONS")||"[]");
+let customerPhoneKey=localStorage.getItem("LFT_CUSTOMER_PHONE")||"";
 
 
 /* LOAD PRODUCTS */
@@ -488,13 +507,45 @@ onValue(ref(db,"orders"),snap=>{
 
 let data=snap.val()||{};
 
-orders=Object.entries(data)
+let newOrders=Object.entries(data)
 .map(([key,value])=>({key,...value}))
 .sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+
+let oldMap=previousOrders;
+orders=newOrders;
+previousOrders={};
+orders.forEach(o=>previousOrders[o.key]=o);
 
 renderOrders();
 renderAdminOrders();
 renderRiderOrders();
+
+if(Object.keys(oldMap).length){
+orders.forEach(o=>{
+let old=oldMap[o.key];
+
+if(!old){
+if(adminLoggedIn){
+pushNotification("🔔 New Order", "New order "+o.orderId+" received.", "admin");
+showBrowserNotification("LAW FRESH TOKARI", "New order: "+o.orderId);
+}
+if(currentRider && o.riderId===currentRider.id){
+pushNotification("🚴 New Rider Order", "Order "+o.orderId+" assigned to you.", "rider");
+showBrowserNotification("New Rider Order", o.orderId+" assigned to you");
+}
+}
+
+if(old && old.status!==o.status){
+if(customerPhoneKey && o.customer?.phone===customerPhoneKey){
+pushNotification("📦 Order Update", o.orderId+" is now "+o.status+".", "customer");
+showBrowserNotification("Order Update", o.orderId+" → "+o.status);
+}
+if(currentRider && o.riderId===currentRider.id){
+pushNotification("📦 Order Status", o.orderId+" is now "+o.status+".", "rider");
+}
+}
+});
+}
 
 });
 
@@ -675,57 +726,54 @@ let address=document.getElementById("customerAddress").value.trim();
 let payment=document.getElementById("payment").value;
 
 if(!name||!phone||!address){
-
 toast("सभी details भरें");
 return;
+}
 
+if(!cart.length){
+toast("Cart खाली है");
+return;
 }
 
 let total=cart.reduce((a,x)=>a+x.price*x.qty,0);
-
 let orderId="LFT"+Date.now().toString().slice(-8);
+
+try{
+
+toast("⏳ Order submit हो रहा है...");
 
 let orderRef=push(ref(db,"orders"));
 
 await set(orderRef,{
-
 orderId,
-
-customer:{
-name,
-phone,
-address
-},
-
+customer:{name,phone,address},
 items:cart,
-
 total,
-
 payment,
-
 status:"Received",
-
 riderId:"",
 riderName:"Not Assigned",
-
 deliveryPhoto:"",
-
 createdAt:Date.now(),
-
 date:new Date().toLocaleString("en-IN")
-
 });
 
-cart=[];
+localStorage.setItem("LFT_CUSTOMER_PHONE",phone);
+customerPhoneKey=phone;
 
+cart=[];
 localStorage.setItem("LFT_CART","[]");
 
 closeModal("checkoutModal");
-
 toast("✅ Order Received: "+orderId);
-
 showPage("orders");
 
+}catch(e){
+
+console.error(e);
+toast("❌ Order नहीं हुआ: "+(e.message||"Firebase permission/error"));
+
+}
 };
 
 
@@ -737,14 +785,18 @@ let box=document.getElementById("ordersContent");
 
 if(!box)return;
 
-if(!orders.length){
+let visibleOrders=customerPhoneKey
+?orders.filter(o=>o.customer?.phone===customerPhoneKey)
+:orders;
+
+if(!visibleOrders.length){
 
 box.innerHTML='<div class="empty">No orders yet</div>';
 return;
 
 }
 
-box.innerHTML=orders.map(o=>`
+box.innerHTML=visibleOrders.map(o=>`
 
 <div class="order">
 
@@ -852,6 +904,87 @@ ${o.deliveryPhoto?`
 }
 
 
+/* NOTIFICATIONS */
+
+function saveNotifications(){
+localStorage.setItem("LFT_NOTIFICATIONS",JSON.stringify(notifications.slice(0,50)));
+}
+
+function pushNotification(title,message,type){
+notifications.unshift({
+id:Date.now()+Math.random(),
+title,
+message,
+type,
+time:new Date().toLocaleString("en-IN")
+});
+notifications=notifications.slice(0,50);
+saveNotifications();
+renderNotifications();
+}
+
+window.showNotifications=()=>{
+showPage("notifications");
+renderNotifications();
+};
+
+function renderNotifications(){
+let box=document.getElementById("notificationsContent");
+if(!box)return;
+
+if(!notifications.length){
+box.innerHTML='<div class="empty">कोई notification नहीं है 🔔</div>';
+return;
+}
+
+box.innerHTML='<div class="notificationBox">'+notifications.map(n=>`
+<div class="notificationItem">
+<b>${n.title}</b>
+<div>${n.message}</div>
+<div class="small">${n.time}</div>
+</div>
+`).join("")+'</div>'+
+'<div class="box"><button class="orange" onclick="clearNotifications()">🗑️ Clear Notifications</button></div>';
+
+let dot=document.getElementById("notifyDot");
+if(dot){
+dot.style.display="flex";
+dot.innerText=Math.min(notifications.length,99);
+}
+}
+
+window.clearNotifications=()=>{
+notifications=[];
+saveNotifications();
+renderNotifications();
+let dot=document.getElementById("notifyDot");
+if(dot)dot.style.display="none";
+};
+
+async function showBrowserNotification(title,body){
+try{
+if(!("Notification" in window))return;
+if(Notification.permission==="default"){
+await Notification.requestPermission();
+}
+if(Notification.permission==="granted"){
+new Notification(title,{body});
+}
+}catch(e){
+console.log("Browser notification unavailable",e);
+}
+}
+
+window.enableNotifications=async()=>{
+if("Notification" in window){
+let p=await Notification.requestPermission();
+if(p==="granted")toast("🔔 Notifications ON");
+else toast("Notifications permission नहीं मिली");
+}else{
+toast("इस browser में notification supported नहीं है");
+}
+};
+
 /* ADMIN LOGIN */
 
 window.adminLogin=()=>{
@@ -863,6 +996,8 @@ if(u==="admin"&&p==="1234"){
 
 document.getElementById("adminLogin").style.display="none";
 document.getElementById("adminPanel").style.display="block";
+adminLoggedIn=true;
+enableNotifications();
 
 renderAdminOrders();
 renderProductAdmin();
@@ -977,6 +1112,14 @@ ref(db,"orders/"+key),
 {status}
 );
 
+let changedOrder=orders.find(x=>x.key===key);
+if(changedOrder){
+pushNotification("📦 Order Status", changedOrder.orderId+" → "+status, "customer");
+if(changedOrder.riderId){
+pushNotification("🚴 Rider Update", changedOrder.orderId+" → "+status, "rider");
+}
+}
+
 toast("✅ Status Updated");
 
 };
@@ -996,6 +1139,11 @@ riderName:r.name,
 status:"Confirmed"
 }
 );
+
+let assignedOrder=orders.find(x=>x.key===key);
+if(assignedOrder){
+pushNotification("🚴 Rider Assigned", assignedOrder.orderId+" assigned to "+r.name, "rider");
+}
 
 toast("🚴 Rider Assigned");
 
@@ -1278,6 +1426,7 @@ id:found[0],
 document.getElementById("riderLoginBox").style.display="none";
 document.getElementById("riderPanel").style.display="block";
 document.getElementById("riderLoggedName").innerText=currentRider.name;
+enableNotifications();
 
 renderRiderOrders();
 
@@ -1344,6 +1493,11 @@ await update(
 ref(db,"orders/"+key),
 {status}
 );
+
+let changedOrder=orders.find(x=>x.key===key);
+if(changedOrder){
+pushNotification("📦 Order Update", changedOrder.orderId+" → "+status, "customer");
+}
 
 toast("Status Updated");
 
@@ -1415,6 +1569,11 @@ deliveredAt:Date.now()
 }
 );
 
+let deliveredOrder=orders.find(x=>x.key===deliveryOrderKey);
+if(deliveredOrder){
+pushNotification("✅ Delivered", deliveredOrder.orderId+" delivered successfully.", "customer");
+}
+
 closeModal("deliveryModal");
 
 document.getElementById("deliveryFile").value="";
@@ -1474,6 +1633,9 @@ let savedLocation=localStorage.getItem("LFT_LOCATION");
 
 if(savedLocation)
 document.getElementById("location").innerText=savedLocation;
+
+customerPhoneKey=localStorage.getItem("LFT_CUSTOMER_PHONE")||"";
+renderNotifications();
 
 
 /* NAVIGATION */
