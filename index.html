@@ -1,801 +1,1519 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LAW Fresh Tokari</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresh Tokari</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f1f3f6;color:#222}
-button{border:0;cursor:pointer}
-.hidden{display:none!important}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
 
-.top{background:#087a3b;color:#fff;text-align:right;padding:6px 5%;font-size:12px}
+body{
+    background:#f4f7f3;
+    color:#222;
+}
 
 header{
-height:72px;background:#fff;display:flex;align-items:center;
-gap:25px;padding:0 5%;position:sticky;top:0;z-index:1000;
-box-shadow:0 1px 6px #0002
+    background:#198754;
+    color:white;
+    padding:16px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
-.logo{min-width:185px;line-height:.9}
-.logo small{display:block;font-size:11px;letter-spacing:5px;color:#087a3b}
-.logo b{font-size:29px;color:#087a3b}
-.logo span{color:#f5a800}
 
-.search{
-height:43px;display:flex;flex:1;max-width:650px;
-background:#f0f5f2;border-radius:5px
+.logo{
+    font-size:26px;
+    font-weight:bold;
 }
-.search input{flex:1;border:0;background:transparent;outline:0;padding:0 16px}
-.search button{width:55px;background:#f5a800;border-radius:0 5px 5px 0}
 
-.actions{display:flex;gap:15px;align-items:center}
-.actions button{background:#fff;font-weight:bold}
-.cartBtn{background:#087a3b!important;color:#fff!important;padding:12px 18px;border-radius:5px}
-
-.categories{
-background:#fff;display:flex;justify-content:center;gap:35px;
-padding:13px;box-shadow:0 1px 3px #0001;overflow:auto
+nav button{
+    background:white;
+    color:#198754;
+    border:0;
+    padding:9px 14px;
+    margin-left:5px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
 }
-.categories button{background:#fff;font-weight:bold;white-space:nowrap}
+
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:25px auto;
+}
 
 .hero{
-width:94%;margin:12px auto;min-height:330px;border-radius:5px;
-background:linear-gradient(90deg,#e5f8e7,#fff1bf);
-display:flex;align-items:center;padding:40px 7%;position:relative;overflow:hidden
+    background:linear-gradient(135deg,#198754,#38b96f);
+    color:white;
+    padding:45px 25px;
+    border-radius:18px;
+    margin-bottom:25px;
 }
-.hero h1{font-size:55px;color:#087a3b}
-.hero h1 span{color:#f39e00}
-.hero h2{margin:15px 0;color:#315b3d}
-.hero p{color:#56675a;max-width:500px;margin-bottom:20px}
-.shop{background:#f5a800;padding:14px 30px;border-radius:5px;font-weight:bold}
-.heroArt{position:absolute;right:7%;font-size:110px}
 
-.wrap{width:94%;margin:15px auto}
-.box{background:#fff;padding:20px;border-radius:4px;box-shadow:0 1px 4px #0001}
-.title{font-size:22px;margin-bottom:18px}
+.hero h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
 
-.catGrid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
-.cat{text-align:center;padding:15px 5px;cursor:pointer;border-radius:5px}
-.cat:hover{box-shadow:0 2px 10px #0002}
-.cat div{font-size:43px;margin-bottom:7px}
-.cat b{font-size:12px}
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:18px;
+}
 
-.products{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.product{background:#fff;border:1px solid #eee;border-radius:4px;overflow:hidden}
-.product:hover{box-shadow:0 4px 15px #0002}
-.pic{height:160px;background:#fafafa;display:flex;align-items:center;justify-content:center;font-size:80px}
-.info{padding:13px}
-.name{font-weight:bold;min-height:35px}
-.unit{font-size:12px;color:#777;margin:5px 0}
-.price{font-size:19px;font-weight:bold;color:#087a3b;margin:9px 0}
-.add{width:100%;padding:10px;background:#087a3b;color:#fff;border-radius:4px;font-weight:bold}
+.card{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.product-img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:12px;
+    background:#eee;
+}
+
+.card h3{
+    margin:12px 0 6px;
+}
+
+.price{
+    color:#198754;
+    font-size:21px;
+    font-weight:bold;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+}
+
+.primary{
+    background:#198754;
+    color:white;
+    padding:10px 15px;
+    border-radius:8px;
+    margin-top:10px;
+}
+
+.danger{
+    background:#dc3545;
+    color:white;
+    padding:9px 12px;
+    border-radius:7px;
+}
+
+.warning{
+    background:#ffc107;
+    color:#111;
+    padding:9px 12px;
+    border-radius:7px;
+}
+
+.info{
+    background:#0d6efd;
+    color:white;
+    padding:9px 12px;
+    border-radius:7px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin:7px 0;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:500;
+    overflow:auto;
+    padding:20px;
+}
+
+.modal-box{
+    background:white;
+    max-width:700px;
+    margin:40px auto;
+    padding:25px;
+    border-radius:15px;
+}
+
+.close{
+    float:right;
+    background:#dc3545;
+    color:white;
+    padding:6px 10px;
+    border-radius:6px;
+}
 
 .cart{
-position:fixed;right:0;top:0;width:420px;max-width:95%;height:100vh;
-background:#fff;z-index:3000;box-shadow:-4px 0 20px #0004;padding:22px;overflow:auto
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-top:25px;
 }
-.cartHead{display:flex;justify-content:space-between}
-.close{background:#eee;width:32px;height:32px;border-radius:50%}
-.cartItem{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid #ddd}
-.qty button{width:27px;height:27px;background:#e5f4e9;border-radius:3px}
-.total{font-size:22px;font-weight:bold;margin:25px 0}
-.checkout{width:100%;padding:15px;background:#f5a800;font-weight:bold;border-radius:4px}
 
-.overlay{
-position:fixed;inset:0;background:#0008;z-index:4000;
-display:flex;align-items:center;justify-content:center;padding:15px
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #ddd;
 }
-.modal{background:#fff;width:500px;max-width:100%;max-height:94vh;overflow:auto;padding:25px;border-radius:7px}
-.modal h2{color:#087a3b;margin-bottom:18px}
-input,textarea,select{
-width:100%;padding:12px;margin:7px 0 14px;border:1px solid #ccc;border-radius:4px;outline:0
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    margin-bottom:25px;
 }
-.primary{width:100%;padding:13px;background:#087a3b;color:#fff;border-radius:4px;font-weight:bold}
-.gray{width:100%;padding:12px;background:#eee;border-radius:4px;margin-top:8px}
 
-.order{background:#fff;padding:20px;margin-bottom:12px;border-radius:4px;box-shadow:0 1px 4px #0001}
-.status{display:inline-block;background:#e5f4e9;color:#087a3b;padding:6px 10px;border-radius:15px;font-size:12px;font-weight:bold}
-
-.track{display:flex;justify-content:space-between;margin:25px 0}
-.step{width:20%;text-align:center}
-.circle{
-width:36px;height:36px;border-radius:50%;background:#ddd;margin:auto;
-display:flex;align-items:center;justify-content:center
+.stat{
+    background:white;
+    padding:20px;
+    border-radius:14px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
-.step.active .circle{background:#087a3b;color:#fff}
-.step small{display:block;margin-top:6px;font-size:9px}
 
-.admin{width:94%;margin:20px auto}
-.adminHead{
-background:#087a3b;color:#fff;padding:22px;border-radius:4px;
-display:flex;justify-content:space-between
+.stat h2{
+    color:#198754;
+    margin-top:8px;
 }
-.adminGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:15px 0}
-.adminCard{background:#fff;padding:20px;border-radius:4px;box-shadow:0 1px 4px #0001}
-.adminCard b{display:block;font-size:28px;color:#087a3b;margin-top:8px}
-.adminBox{background:#fff;padding:20px;margin-top:15px;border-radius:4px}
-.adminOrder{border:1px solid #ddd;padding:15px;border-radius:5px;margin-bottom:10px}
-.adminOrder select{width:auto}
 
-footer{background:#172c20;color:#fff;text-align:center;padding:35px;margin-top:25px}
-
-@media(max-width:1100px){
-.products{grid-template-columns:repeat(4,1fr)}
-.catGrid{grid-template-columns:repeat(4,1fr)}
+.order{
+    background:white;
+    border-radius:14px;
+    padding:18px;
+    margin:15px 0;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
-@media(max-width:700px){
-header{height:auto;padding:10px;flex-wrap:wrap}
-.logo{min-width:130px}.logo b{font-size:23px}
-.search{order:3;flex-basis:100%}
-.actions button:not(.cartBtn){display:none}
-.hero h1{font-size:38px}.heroArt{font-size:60px}
-.products{grid-template-columns:repeat(2,1fr)}
-.catGrid{grid-template-columns:repeat(2,1fr)}
-.adminGrid{grid-template-columns:repeat(2,1fr)}
+
+.status{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    background:#e9ecef;
+    margin:5px 0;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.status.delivered{
+    background:#d1e7dd;
+    color:#0f5132;
+}
+
+.status.cancelled{
+    background:#f8d7da;
+    color:#842029;
+}
+
+.status.delivery{
+    background:#cfe2ff;
+    color:#084298;
+}
+
+.price-control{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-top:10px;
+}
+
+.price-control button{
+    padding:7px 11px;
+    border-radius:6px;
+    background:#198754;
+    color:white;
+}
+
+.price-control button.minus{
+    background:#dc3545;
+}
+
+.price-control span{
+    min-width:70px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.photo{
+    max-width:220px;
+    max-height:220px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.track-result{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+.timeline{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:15px 0;
+}
+
+.timeline div{
+    padding:8px 12px;
+    background:#eee;
+    border-radius:20px;
+}
+
+.timeline .active{
+    background:#198754;
+    color:white;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    margin-top:40px;
+    background:#183b29;
+    color:white;
+}
+
+@media(max-width:600px){
+    .hero h1{
+        font-size:28px;
+    }
+
+    header{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    nav button{
+        margin:2px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="top">Fresh Vegetables • Fast Delivery • Secure QR Payment</div>
-
 <header>
-<div class="logo">
-<small>LAW</small>
-<b>Fresh <span>Tokari</span></b>
-</div>
+    <div class="logo">🥬 FRESH TOKARI</div>
 
-<div class="search">
-<input id="search" placeholder="Search vegetables..." oninput="renderProducts()">
-<button>🔍</button>
-</div>
-
-<div class="actions">
-<button onclick="showOrders()">📦 Orders</button>
-<button onclick="openAdmin()">⚙ Admin</button>
-<button class="cartBtn" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
-</div>
+    <nav>
+        <button onclick="showHome()">Home</button>
+        <button onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+        <button onclick="openTrack()">Track Order</button>
+        <button onclick="openLogin()">Admin / Rider</button>
+    </nav>
 </header>
 
-<div class="categories">
-<button onclick="filter('All')">All</button>
-<button onclick="filter('Vegetables')">🥦 Vegetables</button>
-<button onclick="filter('Leafy')">🥬 Leafy</button>
-<button onclick="filter('Root')">🥔 Root</button>
-<button onclick="filter('Green')">🌶️ Green</button>
-<button onclick="filter('Fruits')">🍋 Vegetable Fruits</button>
-</div>
+<div class="container">
 
-<div id="home">
+<section id="home">
 
-<section class="hero">
-<div>
-<h1>LAW <span>Fresh Tokari</span></h1>
-<h2>🥬 Fresh Sabzi Har Ghar Tak</h2>
-<p>Fresh vegetables ghar baithe order karein.</p>
-<button class="shop" onclick="scrollProducts()">🛒 Shop Fresh Vegetables</button>
-</div>
-<div class="heroArt">🥕🍅🥦</div>
+    <div class="hero">
+        <h1>Fresh Vegetables at Your Door 🥦</h1>
+        <p>Fresh Tokari — fresh sabzi, fast delivery.</p>
+    </div>
+
+    <h2>Fresh Vegetables</h2>
+    <br>
+
+    <div class="products" id="productList"></div>
+
+    <div class="cart">
+        <h2>🛒 Your Cart</h2>
+        <div id="cartItems"></div>
+        <h3 id="cartTotal">Total: ₹0</h3>
+        <button class="primary" onclick="checkout()">Place Order</button>
+    </div>
+
 </section>
 
-<div class="wrap">
-<div class="box">
-<h2 class="title">🥬 Sabzi Category</h2>
+<section id="adminPanel" class="hidden">
 
-<div class="catGrid">
-<div class="cat" onclick="filter('Vegetables')"><div>🥦</div><b>All Sabzi</b></div>
-<div class="cat" onclick="filter('Root')"><div>🥔</div><b>Root</b></div>
-<div class="cat" onclick="filter('Green')"><div>🌶️</div><b>Green</b></div>
-<div class="cat" onclick="filter('Leafy')"><div>🥬</div><b>Leafy</b></div>
-<div class="cat" onclick="filter('Vegetables')"><div>🍅</div><b>Fresh</b></div>
-<div class="cat" onclick="filter('Vegetables')"><div>🧅</div><b>Daily Sabzi</b></div>
-<div class="cat" onclick="filter('Fruits')"><div>🍋</div><b>Other</b></div>
-<div class="cat" onclick="filter('All')"><div>🔥</div><b>All</b></div>
-</div>
-</div>
-</div>
+    <h1>🛠 Admin Portal</h1>
+    <br>
 
-<div class="wrap" id="productArea">
-<div class="box">
-<h2 class="title">🔥 Today's Fresh Vegetables</h2>
-<div id="products" class="products"></div>
-</div>
-</div>
+    <div class="dashboard">
+        <div class="stat">
+            <p>Total Orders</p>
+            <h2 id="totalOrders">0</h2>
+        </div>
 
-</div>
+        <div class="stat">
+            <p>New Orders</p>
+            <h2 id="newOrders">0</h2>
+        </div>
 
-<!-- ORDERS -->
-<div id="ordersPage" class="wrap hidden">
-<div class="box">
-<h2 class="title">📦 My Orders</h2>
-<div id="myOrders"></div>
-</div>
-</div>
+        <div class="stat">
+            <p>Out for Delivery</p>
+            <h2 id="deliveryOrders">0</h2>
+        </div>
 
-<!-- CART -->
-<div id="cart" class="cart hidden">
-<div class="cartHead">
-<h2>🛒 My Cart</h2>
-<button class="close" onclick="closeCart()">✕</button>
-</div>
-<div id="cartItems"></div>
-<div class="total">Total: ₹<span id="cartTotal">0</span></div>
-<button class="checkout" onclick="checkout()">Proceed to Checkout →</button>
-</div>
+        <div class="stat">
+            <p>Delivered</p>
+            <h2 id="deliveredOrders">0</h2>
+        </div>
+    </div>
 
-<!-- DELIVERY -->
-<div id="checkoutModal" class="overlay hidden">
-<div class="modal">
-<h2>📦 Delivery Details</h2>
+    <h2>💰 Price Management</h2>
+    <br>
+    <div id="adminProducts"></div>
 
-<input id="name" placeholder="Full Name">
-<input id="phone" maxlength="10" placeholder="10 Digit Mobile Number">
-<textarea id="address" rows="4" placeholder="Complete Delivery Address"></textarea>
+    <br>
+    <h2>📦 All Orders</h2>
+    <div id="adminOrders"></div>
 
-<button class="primary" onclick="continuePayment()">Continue to Payment →</button>
-<button class="gray" onclick="closeModal('checkoutModal')">Cancel</button>
-</div>
-</div>
+</section>
 
-<!-- PAYMENT -->
-<div id="paymentModal" class="overlay hidden">
-<div class="modal">
+<section id="riderPanel" class="hidden">
 
-<h2>💳 QR Payment</h2>
+    <h1>🚴 Rider Portal</h1>
+    <p>Assigned orders</p>
+    <br>
 
-<p>COD available nahi hai. Sirf QR payment.</p>
+    <div id="riderOrders"></div>
 
-<div style="text-align:center;background:#f5f5f5;padding:15px;margin-top:15px">
-<img src="qr.jpg" style="width:280px;max-width:100%">
-<p style="margin-top:10px">Scan QR and pay using UPI.</p>
-</div>
+</section>
 
-<h2 style="margin-top:20px">₹<span id="payAmount">0</span></h2>
-
-<input id="utr" placeholder="Enter UTR / Transaction Reference">
-
-<button class="primary" onclick="placeOrder()">
-Payment Done → Place Order
-</button>
-
-</div>
-</div>
-
-<!-- SUCCESS -->
-<div id="successModal" class="overlay hidden">
-<div class="modal" style="text-align:center">
-<div style="font-size:65px">🎉</div>
-<h2>Order Placed!</h2>
-<p id="successText"></p>
-<button class="primary" style="margin-top:20px" onclick="closeSuccess()">Track Order</button>
-</div>
-</div>
-
-<!-- ADMIN -->
-<div id="adminPage" class="hidden">
-
-<div class="admin">
-
-<div class="adminHead">
-<div>
-<h2>LAW Fresh Tokari</h2>
-<p>Vegetable Admin Portal</p>
-</div>
-<button style="background:#fff;padding:10px;border-radius:4px" onclick="closeAdmin()">← Website</button>
-</div>
-
-<div class="adminGrid">
-<div class="adminCard">Vegetables<b id="aProducts">0</b></div>
-<div class="adminCard">Orders<b id="aOrders">0</b></div>
-<div class="adminCard">Pending<b id="aPending">0</b></div>
-<div class="adminCard">Sales<b>₹<span id="aSales">0</span></b></div>
-</div>
-
-<div class="adminBox">
-<h3>💰 Today's Vegetable Rate</h3>
-
-<select id="priceProduct"></select>
-<input id="priceValue" type="number" placeholder="New rate">
-
-<button class="primary" onclick="changePrice()">Update Today's Rate</button>
-</div>
-
-<div class="adminBox">
-<h3>➕ Add New Vegetable</h3>
-
-<input id="newName" placeholder="Vegetable Name">
-
-<select id="newCategory">
-<option>Vegetables</option>
-<option>Leafy</option>
-<option>Root</option>
-<option>Green</option>
-<option>Fruits</option>
-</select>
-
-<input id="newUnit" placeholder="Unit e.g. 1 kg">
-<input id="newPrice" type="number" placeholder="Price">
-<input id="newIcon" placeholder="Emoji e.g. 🍅">
-
-<button class="primary" onclick="addProduct()">Add Vegetable</button>
-</div>
-
-<div class="adminBox">
-<h3>📦 Customer Orders</h3>
-<div id="adminOrders"></div>
-</div>
-
-</div>
 </div>
 
 <footer>
-<div class="logo">
-<small style="color:white">LAW</small>
-<b style="color:white">Fresh <span>Tokari</span></b>
-</div>
-<p style="margin-top:12px">Fresh Vegetables • Fast Delivery • Secure Payment</p>
-<p style="margin-top:8px">© 2026 LAW Fresh Tokari</p>
+    © 2026 Fresh Tokari | Fresh Vegetable Delivery
 </footer>
+
+
+<!-- LOGIN MODAL -->
+
+<div class="modal" id="loginModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('loginModal')">X</button>
+
+<h2>Login</h2>
+
+<select id="loginType">
+    <option value="admin">Admin</option>
+    <option value="rider">Rider</option>
+</select>
+
+<input id="loginUser" placeholder="Username">
+<input id="loginPass" type="password" placeholder="Password">
+
+<button class="primary" onclick="login()">Login</button>
+
+<p id="loginError" style="color:red;margin-top:10px;"></p>
+
+</div>
+</div>
+
+
+<!-- CHECKOUT MODAL -->
+
+<div class="modal" id="checkoutModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('checkoutModal')">X</button>
+
+<h2>Place Your Order</h2>
+
+<input id="customerName" placeholder="Your Name">
+<input id="customerPhone" placeholder="Mobile Number">
+<textarea id="customerAddress" placeholder="Delivery Address"></textarea>
+
+<select id="paymentMode">
+    <option value="COD">Cash on Delivery</option>
+    <option value="Online">Online Payment</option>
+</select>
+
+<button class="primary" onclick="placeOrder()">Confirm Order</button>
+
+</div>
+</div>
+
+
+<!-- CART MODAL -->
+
+<div class="modal" id="cartModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('cartModal')">X</button>
+
+<h2>🛒 Cart</h2>
+
+<div id="modalCart"></div>
+
+<h3 id="modalTotal"></h3>
+
+<button class="primary" onclick="checkout()">Checkout</button>
+
+</div>
+</div>
+
+
+<!-- TRACK MODAL -->
+
+<div class="modal" id="trackModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('trackModal')">X</button>
+
+<h2>🔎 Track Your Order</h2>
+
+<input id="trackId" placeholder="Enter Order ID">
+
+<button class="primary" onclick="trackOrder()">Track</button>
+
+<div id="trackResult"></div>
+
+</div>
+</div>
+
 
 <script>
 
-let products=JSON.parse(localStorage.getItem("law_products"))||[
-{id:1,name:"Tamatar",category:"Vegetables",unit:"1 kg",price:40,icon:"🍅"},
-{id:2,name:"Potato",category:"Root",unit:"1 kg",price:35,icon:"🥔"},
-{id:3,name:"Pyaz",category:"Root",unit:"1 kg",price:40,icon:"🧅"},
-{id:4,name:"Bhindi",category:"Green",unit:"500 gm",price:35,icon:"🥒"},
-{id:5,name:"Gobhi",category:"Vegetables",unit:"1 Piece",price:40,icon:"🥦"},
-{id:6,name:"Shimla Mirch",category:"Green",unit:"500 gm",price:50,icon:"🫑"},
-{id:7,name:"Gajar",category:"Root",unit:"1 kg",price:45,icon:"🥕"},
-{id:8,name:"Palak",category:"Leafy",unit:"1 Bunch",price:25,icon:"🥬"},
-{id:9,name:"Hari Mirch",category:"Green",unit:"250 gm",price:20,icon:"🌶️"},
-{id:10,name:"Kheera",category:"Vegetables",unit:"1 kg",price:45,icon:"🥒"},
-{id:11,name:"Baingan",category:"Vegetables",unit:"1 kg",price:50,icon:"🍆"},
-{id:12,name:"Dhaniya",category:"Leafy",unit:"1 Bunch",price:15,icon:"🌿"},
-{id:13,name:"Mooli",category:"Root",unit:"1 kg",price:35,icon:"🥕"},
-{id:14,name:"Patta Gobhi",category:"Vegetables",unit:"1 Piece",price:35,icon:"🥬"},
-{id:15,name:"Nimbu",category:"Fruits",unit:"250 gm",price:30,icon:"🍋"},
-{id:16,name:"Matar",category:"Green",unit:"1 kg",price:80,icon:"🫛"}
+let products = JSON.parse(localStorage.getItem("freshProducts")) || [
+
+    {
+        id:1,
+        name:"Tomato",
+        price:60,
+        unit:"kg",
+        image:"https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id:2,
+        name:"Potato",
+        price:40,
+        unit:"kg",
+        image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id:3,
+        name:"Onion",
+        price:50,
+        unit:"kg",
+        image:"https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id:4,
+        name:"Cabbage",
+        price:45,
+        unit:"kg",
+        image:"https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id:5,
+        name:"Cauliflower",
+        price:70,
+        unit:"kg",
+        image:"https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id:6,
+        name:"Carrot",
+        price:55,
+        unit:"kg",
+        image:"https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=600&q=80"
+    }
 ];
 
-let cart=JSON.parse(localStorage.getItem("law_cart"))||[];
-let orders=JSON.parse(localStorage.getItem("law_orders"))||[];
-let currentCategory="All";
+let cart = JSON.parse(localStorage.getItem("freshCart")) || [];
 
-function save(){
-localStorage.setItem("law_products",JSON.stringify(products));
-localStorage.setItem("law_cart",JSON.stringify(cart));
-localStorage.setItem("law_orders",JSON.stringify(orders));
+let orders = JSON.parse(localStorage.getItem("freshOrders")) || [];
+
+let currentUser = null;
+
+
+/* SAVE */
+
+function saveProducts(){
+    localStorage.setItem("freshProducts",JSON.stringify(products));
 }
+
+function saveCart(){
+    localStorage.setItem("freshCart",JSON.stringify(cart));
+}
+
+function saveOrders(){
+    localStorage.setItem("freshOrders",JSON.stringify(orders));
+}
+
+
+/* HOME */
+
+function showHome(){
+
+    document.getElementById("home").classList.remove("hidden");
+    document.getElementById("adminPanel").classList.add("hidden");
+    document.getElementById("riderPanel").classList.add("hidden");
+
+    renderProducts();
+    renderCart();
+
+}
+
+
+/* PRODUCTS */
 
 function renderProducts(){
 
-let box=document.getElementById("products");
-let search=document.getElementById("search").value.toLowerCase();
-box.innerHTML="";
+    let box=document.getElementById("productList");
 
-let list=products.filter(p=>{
+    box.innerHTML="";
 
-let catOK=currentCategory==="All"||
-p.category===currentCategory||
-(currentCategory==="Vegetables"&&
-["Vegetables","Root","Green","Leafy"].includes(p.category));
+    products.forEach(p=>{
 
-return catOK&&p.name.toLowerCase().includes(search);
-});
+        box.innerHTML+=`
 
-list.forEach(p=>{
-box.innerHTML+=`
-<div class="product">
-<div class="pic">${p.icon}</div>
-<div class="info">
-<div class="name">${p.name}</div>
-<div class="unit">${p.unit}</div>
-<div class="price">₹${p.price}</div>
-<button class="add" onclick="addCart(${p.id})">🛒 Add to Cart</button>
-</div>
-</div>`;
-});
+        <div class="card">
 
-renderPriceProducts();
+            <img class="product-img" src="${p.image}">
+
+            <h3>${p.name}</h3>
+
+            <p class="price">₹${p.price}/${p.unit}</p>
+
+            <button class="primary"
+                onclick="addToCart(${p.id})">
+                Add to Cart
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
 }
 
-function filter(category){
-currentCategory=category;
-document.getElementById("home").classList.remove("hidden");
-document.getElementById("ordersPage").classList.add("hidden");
-renderProducts();
-scrollProducts();
+
+/* CART */
+
+function addToCart(id){
+
+    let product=products.find(p=>p.id===id);
+
+    let item=cart.find(x=>x.id===id);
+
+    if(item){
+
+        item.qty++;
+
+    }else{
+
+        cart.push({
+            id:id,
+            name:product.name,
+            price:product.price,
+            qty:1,
+            unit:product.unit
+        });
+
+    }
+
+    saveCart();
+
+    renderCart();
+
+    alert(product.name+" added to cart");
+
 }
 
-function scrollProducts(){
-document.getElementById("productArea").scrollIntoView({behavior:"smooth"});
+
+function removeCart(id){
+
+    cart=cart.filter(x=>x.id!==id);
+
+    saveCart();
+
+    renderCart();
+
 }
 
-function addCart(id){
-let item=cart.find(x=>x.id===id);
-if(item)item.qty++;
-else cart.push({id:id,qty:1});
-save();
-updateCart();
+
+function changeQty(id,change){
+
+    let item=cart.find(x=>x.id===id);
+
+    if(!item)return;
+
+    item.qty+=change;
+
+    if(item.qty<=0){
+
+        removeCart(id);
+        return;
+
+    }
+
+    saveCart();
+
+    renderCart();
+
 }
 
-function updateCart(){
 
-let count=0,total=0;
+function cartTotal(){
 
-cart.forEach(item=>{
-let p=products.find(x=>x.id===item.id);
-if(p){
-count+=item.qty;
-total+=p.price*item.qty;
+    return cart.reduce(
+        (sum,item)=>sum+(item.price*item.qty),
+        0
+    );
+
 }
-});
 
-document.getElementById("cartCount").textContent=count;
-document.getElementById("cartTotal").textContent=total;
-
-renderCart();
-}
 
 function renderCart(){
 
-let box=document.getElementById("cartItems");
-box.innerHTML="";
+    let box=document.getElementById("cartItems");
 
-if(!cart.length){
-box.innerHTML="<p>Cart empty hai.</p>";
-return;
+    box.innerHTML="";
+
+    cart.forEach(item=>{
+
+        box.innerHTML+=`
+
+        <div class="cart-item">
+
+            <span>
+                ${item.name}
+                x ${item.qty}
+            </span>
+
+            <span>
+                ₹${item.price*item.qty}
+
+                <button
+                    onclick="changeQty(${item.id},1)">
+                    +
+                </button>
+
+                <button
+                    onclick="changeQty(${item.id},-1)">
+                    -
+                </button>
+            </span>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("cartTotal").innerText=
+        "Total: ₹"+cartTotal();
+
+    document.getElementById("cartCount").innerText=
+        cart.reduce((a,b)=>a+b.qty,0);
+
 }
 
-cart.forEach(item=>{
 
-let p=products.find(x=>x.id===item.id);
-if(!p)return;
-
-box.innerHTML+=`
-<div class="cartItem">
-<div><b>${p.icon} ${p.name}</b><br>₹${p.price} × ${item.qty}</div>
-<div class="qty">
-<button onclick="qty(${p.id},-1)">−</button>
-${item.qty}
-<button onclick="qty(${p.id},1)">+</button>
-</div>
-</div>`;
-});
-}
-
-function qty(id,n){
-
-let item=cart.find(x=>x.id===id);
-if(!item)return;
-
-item.qty+=n;
-
-if(item.qty<=0)
-cart=cart.filter(x=>x.id!==id);
-
-save();
-updateCart();
-}
+/* CART MODAL */
 
 function openCart(){
-document.getElementById("cart").classList.remove("hidden");
+
+    document.getElementById("cartModal").style.display="block";
+
+    let box=document.getElementById("modalCart");
+
+    box.innerHTML="";
+
+    cart.forEach(item=>{
+
+        box.innerHTML+=`
+        <p>
+        ${item.name} × ${item.qty}
+        = ₹${item.price*item.qty}
+        </p>
+        `;
+
+    });
+
+    document.getElementById("modalTotal").innerText=
+        "Total: ₹"+cartTotal();
+
 }
 
-function closeCart(){
-document.getElementById("cart").classList.add("hidden");
-}
+
+/* CHECKOUT */
 
 function checkout(){
 
-if(!cart.length){
-alert("Cart empty hai.");
-return;
+    if(cart.length===0){
+
+        alert("Cart empty hai");
+
+        return;
+
+    }
+
+    document.getElementById("cartModal").style.display="none";
+
+    document.getElementById("checkoutModal").style.display="block";
+
 }
 
-closeCart();
-document.getElementById("checkoutModal").classList.remove("hidden");
-}
-
-/* OTP REMOVED */
-
-function continuePayment(){
-
-let name=document.getElementById("name").value.trim();
-let phone=document.getElementById("phone").value.trim();
-let address=document.getElementById("address").value.trim();
-
-if(!name||!phone||!address){
-alert("Sabhi delivery details bharo.");
-return;
-}
-
-if(!/^[0-9]{10}$/.test(phone)){
-alert("10 digit mobile number dalo.");
-return;
-}
-
-document.getElementById("checkoutModal").classList.add("hidden");
-
-document.getElementById("payAmount").textContent=getTotal();
-
-document.getElementById("paymentModal").classList.remove("hidden");
-}
-
-function getTotal(){
-
-return cart.reduce((sum,item)=>{
-
-let p=products.find(x=>x.id===item.id);
-
-return sum+(p?p.price*item.qty:0);
-
-},0);
-}
 
 function placeOrder(){
 
-let utr=document.getElementById("utr").value.trim();
+    let name=document.getElementById("customerName").value.trim();
 
-if(!utr){
-alert("UTR / Transaction Reference dalo.");
-return;
+    let phone=document.getElementById("customerPhone").value.trim();
+
+    let address=document.getElementById("customerAddress").value.trim();
+
+    let payment=document.getElementById("paymentMode").value;
+
+    if(!name || !phone || !address){
+
+        alert("Name, mobile aur address bhariye");
+
+        return;
+
+    }
+
+    let orderId=
+        "FT"+Date.now().toString().slice(-8);
+
+    let order={
+
+        id:orderId,
+
+        customer:{
+            name:name,
+            phone:phone,
+            address:address
+        },
+
+        items:JSON.parse(JSON.stringify(cart)),
+
+        total:cartTotal(),
+
+        payment:payment,
+
+        status:"New Order",
+
+        rider:"",
+
+        deliveryPhoto:"",
+
+        createdAt:new Date().toLocaleString(),
+
+        receivedAt:"",
+
+        deliveredAt:""
+
+    };
+
+    orders.unshift(order);
+
+    saveOrders();
+
+    cart=[];
+
+    saveCart();
+
+    renderCart();
+
+    document.getElementById("checkoutModal").style.display="none";
+
+    alert(
+        "Order successfully placed!\n\nOrder ID: "+
+        orderId
+    );
+
+    showHome();
+
 }
 
-let order={
-id:"LAW"+Date.now().toString().slice(-8),
-name:document.getElementById("name").value,
-phone:document.getElementById("phone").value,
-address:document.getElementById("address").value,
-items:JSON.parse(JSON.stringify(cart)),
-total:getTotal(),
-utr:utr,
-payment:"QR",
-paymentStatus:"Paid",
-status:"Order Placed",
-date:new Date().toLocaleString("en-IN")
-};
 
-orders.unshift(order);
-cart=[];
-save();
-updateCart();
+/* LOGIN */
 
-document.getElementById("paymentModal").classList.add("hidden");
+function openLogin(){
 
-document.getElementById("successText").innerHTML=
-"Order ID: <b>"+order.id+"</b><br>Amount: ₹"+order.total;
+    document.getElementById("loginModal").style.display="block";
 
-document.getElementById("successModal").classList.remove("hidden");
 }
 
-function closeSuccess(){
-document.getElementById("successModal").classList.add("hidden");
-showOrders();
+
+function login(){
+
+    let type=document.getElementById("loginType").value;
+
+    let user=document.getElementById("loginUser").value;
+
+    let pass=document.getElementById("loginPass").value;
+
+    if(
+        type==="admin" &&
+        user==="admin" &&
+        pass==="1234"
+    ){
+
+        currentUser="admin";
+
+        closeModal("loginModal");
+
+        openAdmin();
+
+        return;
+
+    }
+
+
+    if(
+        type==="rider" &&
+        user==="rider1" &&
+        pass==="1234"
+    ){
+
+        currentUser="rider1";
+
+        closeModal("loginModal");
+
+        openRider();
+
+        return;
+
+    }
+
+
+    document.getElementById("loginError").innerText=
+        "Username ya password galat hai";
+
 }
 
-function showOrders(){
-
-document.getElementById("home").classList.add("hidden");
-document.getElementById("ordersPage").classList.remove("hidden");
-
-renderOrders();
-window.scrollTo(0,0);
-}
-
-function renderOrders(){
-
-let box=document.getElementById("myOrders");
-box.innerHTML="";
-
-if(!orders.length){
-box.innerHTML="<div class='order'>No orders yet.</div>";
-return;
-}
-
-orders.forEach(o=>{
-
-box.innerHTML+=`
-<div class="order">
-<h3>📦 Order #${o.id}</h3>
-<p style="margin:8px 0">Amount: <b>₹${o.total}</b></p>
-<p>Payment: QR / Paid</p>
-${tracking(o.status)}
-<p>Status: <span class="status">${o.status}</span></p>
-</div>`;
-});
-}
-
-function tracking(status){
-
-let steps=[
-"Order Placed",
-"Rider Ready",
-"Pickup",
-"Out for Delivery",
-"Delivered"
-];
-
-let current=steps.indexOf(status);
-
-return`
-<div class="track">
-${steps.map((x,i)=>`
-<div class="step ${i<=current?"active":""}">
-<div class="circle">${i<=current?"✓":i+1}</div>
-<small>${x}</small>
-</div>`).join("")}
-</div>`;
-}
 
 /* ADMIN */
 
 function openAdmin(){
 
-let password=prompt("Admin Password:");
+    document.getElementById("home").classList.add("hidden");
 
-if(password!=="9625"){
-alert("Wrong Admin Password.");
-return;
-}
+    document.getElementById("riderPanel").classList.add("hidden");
 
-document.getElementById("home").classList.add("hidden");
-document.getElementById("ordersPage").classList.add("hidden");
-document.getElementById("adminPage").classList.remove("hidden");
+    document.getElementById("adminPanel").classList.remove("hidden");
 
-renderAdmin();
-}
-
-function closeAdmin(){
-
-document.getElementById("adminPage").classList.add("hidden");
-document.getElementById("home").classList.remove("hidden");
+    renderAdmin();
 
 }
 
-function renderPriceProducts(){
-
-let select=document.getElementById("priceProduct");
-if(!select)return;
-
-select.innerHTML="";
-
-products.forEach(p=>{
-select.innerHTML+=`
-<option value="${p.id}">
-${p.name} - ₹${p.price}/${p.unit}
-</option>`;
-});
-}
-
-function changePrice(){
-
-let id=Number(document.getElementById("priceProduct").value);
-let price=Number(document.getElementById("priceValue").value);
-
-if(!price||price<=0){
-alert("Valid rate dalo.");
-return;
-}
-
-let p=products.find(x=>x.id===id);
-p.price=price;
-
-save();
-renderProducts();
-
-document.getElementById("priceValue").value="";
-
-alert(p.name+" ka rate ₹"+price+" ho gaya.");
-}
-
-function addProduct(){
-
-let name=document.getElementById("newName").value.trim();
-let category=document.getElementById("newCategory").value;
-let unit=document.getElementById("newUnit").value.trim();
-let price=Number(document.getElementById("newPrice").value);
-let icon=document.getElementById("newIcon").value.trim()||"🥬";
-
-if(!name||!unit||!price){
-alert("Product details complete karo.");
-return;
-}
-
-products.push({
-id:Date.now(),
-name:name,
-category:category,
-unit:unit,
-price:price,
-icon:icon
-});
-
-save();
-renderProducts();
-
-document.getElementById("newName").value="";
-document.getElementById("newUnit").value="";
-document.getElementById("newPrice").value="";
-document.getElementById("newIcon").value="";
-
-alert("Sabzi add ho gayi.");
-}
 
 function renderAdmin(){
 
-document.getElementById("aProducts").textContent=products.length;
-document.getElementById("aOrders").textContent=orders.length;
+    document.getElementById("totalOrders").innerText=
+        orders.length;
 
-document.getElementById("aPending").textContent=
-orders.filter(x=>x.status!=="Delivered").length;
+    document.getElementById("newOrders").innerText=
+        orders.filter(o=>o.status==="New Order").length;
 
-document.getElementById("aSales").textContent=
-orders.reduce((a,b)=>a+Number(b.total),0);
+    document.getElementById("deliveryOrders").innerText=
+        orders.filter(
+            o=>o.status==="Out for Delivery"
+        ).length;
 
-renderPriceProducts();
+    document.getElementById("deliveredOrders").innerText=
+        orders.filter(
+            o=>o.status==="Delivered"
+        ).length;
 
-let box=document.getElementById("adminOrders");
-box.innerHTML="";
 
-if(!orders.length){
-box.innerHTML="<p>No orders.</p>";
-return;
+    /* PRICE CONTROL */
+
+    let priceBox=document.getElementById("adminProducts");
+
+    priceBox.innerHTML="";
+
+    products.forEach(p=>{
+
+        priceBox.innerHTML+=`
+
+        <div class="card" style="margin-bottom:10px">
+
+            <h3>${p.name}</h3>
+
+            <div class="price-control">
+
+                <button class="minus"
+                    onclick="changePrice(${p.id},-5)">
+                    - ₹5
+                </button>
+
+                <span>₹${p.price}</span>
+
+                <button
+                    onclick="changePrice(${p.id},5)">
+                    + ₹5
+                </button>
+
+                <input
+                    type="number"
+                    value="${p.price}"
+                    onchange="setPrice(${p.id},this.value)"
+                    style="width:120px">
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    /* ORDERS */
+
+    let orderBox=document.getElementById("adminOrders");
+
+    orderBox.innerHTML="";
+
+    if(orders.length===0){
+
+        orderBox.innerHTML=
+            "<p>No orders yet.</p>";
+
+        return;
+
+    }
+
+
+    orders.forEach(o=>{
+
+        let items=o.items.map(i=>
+            `${i.name} × ${i.qty}`
+        ).join(", ");
+
+
+        let riderOptions=`
+            <option value="">Select Rider</option>
+            <option value="Rider 1"
+                ${o.rider==="Rider 1"?"selected":""}>
+                Rider 1
+            </option>
+        `;
+
+
+        orderBox.innerHTML+=`
+
+        <div class="order">
+
+            <h3>Order #${o.id}</h3>
+
+            <span class="status
+                ${o.status==="Delivered"?"delivered":""}
+                ${o.status==="Out for Delivery"?"delivery":""}
+                ${o.status==="Cancelled"?"cancelled":""}">
+                ${o.status}
+            </span>
+
+            <p><b>Customer:</b>
+                ${o.customer.name}
+            </p>
+
+            <p><b>Mobile:</b>
+                ${o.customer.phone}
+            </p>
+
+            <p><b>Address:</b>
+                ${o.customer.address}
+            </p>
+
+            <p><b>Items:</b> ${items}</p>
+
+            <p><b>Total:</b> ₹${o.total}</p>
+
+            <p><b>Payment:</b> ${o.payment}</p>
+
+            <p><b>Order Time:</b> ${o.createdAt}</p>
+
+            <br>
+
+            <select
+                onchange="assignRider('${o.id}',this.value)">
+                ${riderOptions}
+            </select>
+
+            <br>
+
+            <button class="info"
+                onclick="updateStatus('${o.id}','Received')">
+                Received
+            </button>
+
+            <button class="warning"
+                onclick="updateStatus('${o.id}','Processing')">
+                Processing
+            </button>
+
+            <button class="info"
+                onclick="updateStatus('${o.id}','Out for Delivery')">
+                Out for Delivery
+            </button>
+
+            <button class="primary"
+                onclick="updateStatus('${o.id}','Delivered')">
+                Delivered
+            </button>
+
+            <button class="danger"
+                onclick="updateStatus('${o.id}','Cancelled')">
+                Cancel
+            </button>
+
+            ${
+                o.deliveryPhoto
+                ?
+                `<br>
+                <p><b>📸 Delivery Proof:</b></p>
+                <img class="photo"
+                     src="${o.deliveryPhoto}">
+                `
+                :
+                ""
+            }
+
+        </div>
+
+        `;
+
+    });
+
 }
 
-orders.forEach(o=>{
 
-box.innerHTML+=`
-<div class="adminOrder">
+/* PRICE */
 
-<h3>📦 ${o.id}</h3>
+function changePrice(id,amount){
 
-<p><b>Customer:</b> ${o.name}</p>
-<p><b>Mobile:</b> ${o.phone}</p>
-<p><b>Address:</b> ${o.address}</p>
-<p><b>Amount:</b> ₹${o.total}</p>
-<p><b>Payment:</b> QR / ${o.utr}</p>
+    let p=products.find(x=>x.id===id);
 
-<select onchange="changeStatus('${o.id}',this.value)">
+    if(!p)return;
 
-<option ${o.status==="Order Placed"?"selected":""}>Order Placed</option>
-<option ${o.status==="Rider Ready"?"selected":""}>Rider Ready</option>
-<option ${o.status==="Pickup"?"selected":""}>Pickup</option>
-<option ${o.status==="Out for Delivery"?"selected":""}>Out for Delivery</option>
-<option ${o.status==="Delivered"?"selected":""}>Delivered</option>
+    p.price=Math.max(
+        1,
+        Number(p.price)+Number(amount)
+    );
 
-</select>
+    saveProducts();
 
-<span class="status">${o.status}</span>
+    renderProducts();
 
-</div>`;
-});
+    renderAdmin();
+
 }
 
-function changeStatus(id,status){
 
-let order=orders.find(x=>x.id===id);
-if(!order)return;
+function setPrice(id,value){
 
-order.status=status;
+    let p=products.find(x=>x.id===id);
 
-save();
-renderAdmin();
-renderOrders();
+    if(!p)return;
+
+    p.price=Math.max(1,Number(value));
+
+    saveProducts();
+
+    renderProducts();
+
+    renderAdmin();
+
 }
+
+
+/* ORDER STATUS */
+
+function updateStatus(id,status){
+
+    let order=orders.find(o=>o.id===id);
+
+    if(!order)return;
+
+    order.status=status;
+
+    if(status==="Received"){
+
+        order.receivedAt=
+            new Date().toLocaleString();
+
+    }
+
+    if(status==="Delivered"){
+
+        order.deliveredAt=
+            new Date().toLocaleString();
+
+    }
+
+    saveOrders();
+
+    renderAdmin();
+
+}
+
+
+/* RIDER ASSIGN */
+
+function assignRider(id,rider){
+
+    let order=orders.find(o=>o.id===id);
+
+    if(!order)return;
+
+    order.rider=rider;
+
+    saveOrders();
+
+    renderAdmin();
+
+}
+
+
+/* RIDER */
+
+function openRider(){
+
+    document.getElementById("home").classList.add("hidden");
+
+    document.getElementById("adminPanel").classList.add("hidden");
+
+    document.getElementById("riderPanel").classList.remove("hidden");
+
+    renderRider();
+
+}
+
+
+function renderRider(){
+
+    let box=document.getElementById("riderOrders");
+
+    box.innerHTML="";
+
+    let riderOrders=orders.filter(
+        o=>o.rider==="Rider 1"
+    );
+
+    if(riderOrders.length===0){
+
+        box.innerHTML=
+            "<p>No assigned orders.</p>";
+
+        return;
+
+    }
+
+
+    riderOrders.forEach(o=>{
+
+        box.innerHTML+=`
+
+        <div class="order">
+
+            <h3>Order #${o.id}</h3>
+
+            <span class="status">${o.status}</span>
+
+            <p>
+                <b>Customer:</b>
+                ${o.customer.name}
+            </p>
+
+            <p>
+                <b>Phone:</b>
+                ${o.customer.phone}
+            </p>
+
+            <p>
+                <b>Address:</b>
+                ${o.customer.address}
+            </p>
+
+            <p>
+                <b>Total:</b>
+                ₹${o.total}
+            </p>
+
+            <button class="warning"
+                onclick="riderStatus('${o.id}','Picked Up')">
+                Picked Up
+            </button>
+
+            <button class="info"
+                onclick="riderStatus('${o.id}','Out for Delivery')">
+                Out for Delivery
+            </button>
+
+            <br><br>
+
+            <label>
+                📸 Delivery Photo
+            </label>
+
+            <input
+                type="file"
+                accept="image/*"
+                capture="environment"
+                onchange="uploadDeliveryPhoto(event,'${o.id}')">
+
+            ${
+                o.deliveryPhoto
+                ?
+                `<img class="photo"
+                    src="${o.deliveryPhoto}">`
+                :
+                ""
+            }
+
+            <br>
+
+            ${
+                o.deliveryPhoto
+                ?
+                `<button class="primary"
+                    onclick="riderDeliver('${o.id}')">
+                    ✅ Mark Delivered
+                </button>`
+                :
+                `<p style="color:#dc3545">
+                    Delivery photo mandatory
+                </p>`
+            }
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+function riderStatus(id,status){
+
+    let order=orders.find(o=>o.id===id);
+
+    if(!order)return;
+
+    order.status=status;
+
+    saveOrders();
+
+    renderRider();
+
+}
+
+
+/* PHOTO */
+
+function uploadDeliveryPhoto(event,id){
+
+    let file=event.target.files[0];
+
+    if(!file)return;
+
+    let reader=new FileReader();
+
+    reader.onload=function(){
+
+        let order=orders.find(o=>o.id===id);
+
+        if(!order)return;
+
+        order.deliveryPhoto=reader.result;
+
+        saveOrders();
+
+        renderRider();
+
+        alert("Delivery photo saved");
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+function riderDeliver(id){
+
+    let order=orders.find(o=>o.id===id);
+
+    if(!order)return;
+
+    if(!order.deliveryPhoto){
+
+        alert(
+            "Delivery complete karne se pehle photo upload karein."
+        );
+
+        return;
+
+    }
+
+    order.status="Delivered";
+
+    order.deliveredAt=
+        new Date().toLocaleString();
+
+    saveOrders();
+
+    renderRider();
+
+    alert("Order Delivered Successfully");
+
+}
+
+
+/* TRACKING */
+
+function openTrack(){
+
+    document.getElementById("trackModal").style.display="block";
+
+}
+
+
+function trackOrder(){
+
+    let id=
+        document.getElementById("trackId")
+        .value.trim();
+
+    let order=orders.find(
+        o=>o.id.toLowerCase()===id.toLowerCase()
+    );
+
+    let box=document.getElementById("trackResult");
+
+    if(!order){
+
+        box.innerHTML=
+            `<p style="color:red">
+                Order nahi mila.
+            </p>`;
+
+        return;
+
+    }
+
+
+    let statuses=[
+        "New Order",
+        "Received",
+        "Processing",
+        "Picked Up",
+        "Out for Delivery",
+        "Delivered"
+    ];
+
+    let current=statuses.indexOf(order.status);
+
+
+    let timeline="";
+
+    statuses.forEach((s,index)=>{
+
+        timeline+=`
+
+        <div class="${index<=current?"active":""}">
+            ${s}
+        </div>
+
+        `;
+
+    });
+
+
+    box.innerHTML=`
+
+        <div class="track-result">
+
+            <h2>Order #${order.id}</h2>
+
+            <p>
+                <b>Status:</b> ${order.status}
+            </p>
+
+            <p>
+                <b>Customer:</b>
+                ${order.customer.name}
+            </p>
+
+            <p>
+                <b>Total:</b>
+                ₹${order.total}
+            </p>
+
+            <div class="timeline">
+                ${timeline}
+            </div>
+
+            ${
+                order.deliveryPhoto
+                ?
+                `<p><b>Delivery Proof:</b></p>
+                 <img class="photo"
+                      src="${order.deliveryPhoto}">
+                `
+                :
+                ""
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+/* MODAL */
 
 function closeModal(id){
-document.getElementById(id).classList.add("hidden");
+
+    document.getElementById(id).style.display="none";
+
 }
 
+
+/* START */
+
 renderProducts();
-updateCart();
+
+renderCart();
 
 </script>
 
 </body>
 </html>
+```
